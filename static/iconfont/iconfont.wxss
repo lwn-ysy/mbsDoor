@@ -1,0 +1,59 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 2730619 */
+  src: url('//at.alicdn.com/t/font_2730619_uy0awk0mw3k.woff2?t=1628510848756') format('woff2'),
+       url('//at.alicdn.com/t/font_2730619_uy0awk0mw3k.woff?t=1628510848756') format('woff'),
+       url('//at.alicdn.com/t/font_2730619_uy0awk0mw3k.ttf?t=1628510848756') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-addressbook:before {
+  content: "\e6e2";
+}
+
+.icon-collection:before {
+  content: "\e6ea";
+}
+
+.icon-coordinates:before {
+  content: "\e6ec";
+}
+
+.icon-homepage:before {
+  content: "\e702";
+}
+
+.icon-addressbook-red:before {
+  content: "\e8c7";
+}
+
+.icon-collection-red-copy:before {
+  content: "\e8c8";
+}
+
+.icon-coordinates-copy:before {
+  content: "\e8c9";
+}
+
+.icon-homepage-copy:before {
+  content: "\e8ca";
+}
+
+.icon-gengduo:before {
+  content: "\e8af";
+}
+
+.icon-dianzan:before {
+  content: "\e8c3";
+}
+
+.icon-shoucang:before {
+  content: "\e8c6";
+}
+

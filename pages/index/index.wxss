@@ -1,0 +1,145 @@
+/* pages/index/index.wxss */
+.indexPageContainer {
+  position: relative;
+  width: 100%;
+}
+
+.bannerContainer {
+  padding: 0 25rpx;
+}
+
+.banner {
+  width: 100%;
+  height: 273rpx;
+}
+
+.banner image {
+  width: 100%;
+  height: 100%;
+  border-radius: 30rpx;
+}
+
+/* 2. 滚动视图区域-切换标签*/
+.categoryContainer{
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background-color: #fff;
+
+} 
+.category {
+  display: flex;
+  height: 100rpx;
+  flex-wrap: nowrap;
+  margin-top: 20rpx;
+}
+
+.category .categoryItem {
+  height: 60rpx;
+  line-height: 60rpx;
+  margin: 0 20rpx;
+  font-size: 24rpx;
+  border-radius: 20rpx;
+  text-align: center;
+  background-color: #f7f7f7;
+}
+
+.category .categoryItem text {
+  display: inline-block;
+  width: 120rpx;
+}
+
+.category .selected {
+  color: #d43d33;
+  border-bottom: 2rpx solid #d43d33;
+}
+
+/* 3. 图片展示区域 */
+.shopContainer {
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 20rpx;
+  padding-top: 20rpx;
+  background-color: #f7f7f7;
+}
+
+.shopContainer .shop {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.shop .shopItem {
+  margin-left: 20rpx;
+  margin-bottom: 40rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-top-right-radius: 20rpx;
+  border-top-left-radius: 20rpx;
+  overflow: hidden;
+}
+/* 一行一个图片的类 */
+.shop .fullShop{
+  width: 710rpx;
+}
+.shop .halfShop{
+  width: 345rpx;
+}
+/* 一行两个图片的类 */
+.shop .shopItem .half {
+  width: 345rpx;
+  /* 高度可以计算 */
+  height: 504rpx;
+}
+.shop .shopItem .full{
+  width: 710rpx;
+  height: 334rpx;
+}
+.shop .shopItem .des {
+  font-size: 22rpx;
+  margin: 0 20rpx;
+  height: 60rpx;
+  /* 多行文本溢出隐藏 省略号代替*/
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  /*设置对其模式*/
+  -webkit-line-clamp: 2;
+  /*设置多行的行数*/
+}
+
+/* 3.3底部图标 */
+.shopContainer .icon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20rpx ;
+}
+
+.icon .left-icon {
+  display: flex;
+  align-items: center;
+}
+
+.icon .left-icon text {
+  font-size: 20rpx;
+  padding: 0 6rpx;
+  background-color: #f7f7f7;
+  border: 1rpx solid #d43d33;
+  color: #d43d33;
+  border-radius: 10rpx;
+  margin-right: 10rpx;
+}
+
+.icon .right-icon {
+  display: flex;
+  align-items: center;
+}
+
+.icon .right-icon text {
+  margin-right: 20rpx;
+  font-size: 30rpx;
+  text-align: center;
+
+}
