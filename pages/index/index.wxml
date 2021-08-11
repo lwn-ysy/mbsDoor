@@ -3,24 +3,24 @@
   <!-- 1. 轮播图 -->
   <view class="bannerContainer">
     <swiper class="banner" indicator-dots indicator-color='#fff' indicator-active-color='#f43f33'>
-      <swiper-item class="bannerItem" wx:for="{{bannerLists}}" wx:key="picUrl">
-        <image src="{{item.picUrl}}"></image>
+      <swiper-item class="bannerItem" wx:for="{{bannerList}}" wx:key="bannerID">
+        <image src="{{item.picURL}}"></image>
       </swiper-item>
     </swiper>
   </view>
   <!-- 2. 滚动视图区域-切换标签 -->
   <view class="categoryContainer">
-    <scroll-view class="category" enable-flex scroll-x >
-      <view class="categoryItem " wx:for="{{categoryList}}" wx:key='doorCategoryID'
-        data-doorcategoryid='{{item.doorCategoryID}}' bindtap="switchCategory">
-        <text class="{{item.doorCategoryID ===  selectID ? 'selected' : ''}}">{{item.title}}</text>
+    <scroll-view class="category" enable-flex scroll-x>
+      <view class="categoryItem " wx:for="{{categoryList}}" wx:key='categoryID' data-categoryid='{{item.categoryID}}'
+        bindtap="switchCategory">
+        <text class="{{item.categoryID ===  selectID ? 'selected' : ''}}">{{item.name}}</text>
       </view>
     </scroll-view>
   </view>
   <!-- 3. 图片展示区域 -->
   <view class="shopContainer">
-    <scroll-view class="shop" enable-flex scroll-y >
-      <view class="shopItem {{item.isFull ? 'fullShop' : 'halfShop'}} " wx:for="{{shopList}}" wx:key="picID">
+    <scroll-view class="shop" enable-flex scroll-y>
+      <view class="shopItem {{item.isFull === 1 ? 'fullShop' : 'halfShop'}} " wx:for="{{shopList}}" wx:key="shopID">
         <!-- 3.1 图片 -->
         <image class="{{item.isFull ? 'full' : 'half'}}" src="{{item.picUrl}}"></image>
         <!-- 3.2 文字说明  -->
@@ -29,7 +29,7 @@
         <view class="icon">
           <!-- 3.3.1左边小标签 -->
           <view class="left-icon">
-            <text wx:for="{{item.tag}}" wx:key='index' wx:for-item="tagItem">{{tagItem}}</text>
+            <text wx:for="{{item.tags}}" wx:key='index' wx:for-item="tagItem">{{tagItem}}</text>
           </view>
           <view class="right-icon">
             <text class="iconfont icon-dianzan"></text>
