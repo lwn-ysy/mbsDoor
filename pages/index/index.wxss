@@ -20,12 +20,13 @@
 }
 
 /* 2. 滚动视图区域-切换标签*/
-.categoryContainer{
+.categoryContainer {
   position: sticky;
   top: 0;
   z-index: 99;
   background-color: #fff;
-} 
+}
+
 .category {
   display: flex;
   height: 100rpx;
@@ -77,23 +78,28 @@
   border-top-left-radius: 20rpx;
   overflow: hidden;
 }
+
 /* 一行一个图片的类 */
-.shop .fullShop{
+.shop .fullShop {
   width: 710rpx;
 }
-.shop .halfShop{
+
+.shop .halfShop {
   width: 345rpx;
 }
+
 /* 一行两个图片的类 */
 .shop .shopItem .half {
   width: 345rpx;
   /* 高度可以计算 */
   height: 504rpx;
 }
-.shop .shopItem .full{
+
+.shop .shopItem .full {
   width: 710rpx;
   height: 334rpx;
 }
+
 .shop .shopItem .des {
   font-size: 22rpx;
   margin: 0 20rpx;
@@ -113,7 +119,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 20rpx ;
+  margin: 20rpx;
 }
 
 .icon .left-icon {
@@ -135,10 +141,34 @@
   display: flex;
   align-items: center;
 }
-
+.icon .right-icon button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30rpx;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
 .icon .right-icon text {
   margin-right: 20rpx;
   font-size: 30rpx;
   text-align: center;
+}
+.icon .right-icon .buttontext{
+  margin-right: 0;
+}
 
+/* 4.上拉，显示加载中 */
+.bottom {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f6f6f6;
+}
+
+.bottom text {
+  font-size: 24rpx;
 }

@@ -1,41 +1,40 @@
 {
   "pages": [
+    "pages/personal/personal",
     "pages/index/index",
     "pages/collection/collection",
-    "pages/show/show",
-    "pages/personal/personal"
-
+    "pages/show/show"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "门博士",
     "navigationBarTextStyle": "black"
+
   },
   "tabBar": {
     "color": "#333",
     "selectedColor": "#d43c33",
     "backgroundColor": "#fff",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/index/index",
         "text": "主页",
         "iconPath": "/static/image/tabs/homepage.png",
         "selectedIconPath": "/static/image/tabs/homepage-selected.png"
       },
-    
+
       {
         "pagePath": "pages/collection/collection",
-        "text": "收藏",
+        "text": "待定",
         "iconPath": "/static/image/tabs/collection.png",
         "selectedIconPath": "/static/image/tabs/collection-selected.png"
       },
       {
         "pagePath": "pages/show/show",
-        "text": "实拍",
+        "text": "实地实拍",
         "iconPath": "/static/image/tabs/show.png",
         "selectedIconPath": "/static/image/tabs/show-selected.png"
-      } ,{
+      }, {
         "pagePath": "pages/personal/personal",
         "text": "个人中心",
         "iconPath": "/static/image/tabs/personal.png",

@@ -1,2 +1,39 @@
-<!--pages/personal/personal.wxml-->
-<text>pages/personal/personal.wxml</text>
+<view class="personalContaier">
+  <!-- 1. 个人信息 -->
+  <view class="profileWrapper">
+    <image class="bg" src="/static/image/personal/bgImg.jpg"></image>
+    <image class="arc" src="/static/image/personal/arc.png"></image>
+    <view class="profile">
+      <image class="avartor" src="/static/image/personal/missing-face.png"></image>
+      <text class="nickName">未登录</text>
+    </view>
+  </view>
+  <!-- 2. 收藏 -->
+  <view class="collect">
+    <view class="header">收藏</view>
+    <scroll-view class="collectWrapper" enable-flex scroll-x>
+      <view class="collect-item" wx:for="{{collectList}}" wx:key="shopID">
+        <image src="{{item.picUrl}}"></image>
+        <view class="bottom">
+          <text class="title">{{item.title}}</text>
+          <button open-type="share" class="share-button" data-url="{{item.picUrl}}" data-title="{{item.title}}"><text
+              class="iconfont icon-gengduo buttontext"></text></button>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- 3. 历史 -->
+  <view class="collect">
+    <view class="header">历史</view>
+    <scroll-view class="collectWrapper" enable-flex scroll-x>
+      <view class="collect-item" wx:for="{{historyList}}" wx:key="shopID">
+        <image src="{{item.picUrl}}"></image>
+        <view class="bottom">
+          <text class="title">{{item.title}}</text>
+          <button open-type="share" class="share-button" data-url="{{item.picUrl}}" data-title="{{item.title}}"><text
+              class="iconfont icon-gengduo buttontext"></text></button>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

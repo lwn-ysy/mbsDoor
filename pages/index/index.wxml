@@ -2,7 +2,7 @@
 <view class="indexPageContainer">
   <!-- 1. 轮播图 -->
   <view class="bannerContainer">
-    <swiper class="banner" indicator-dots indicator-color='#fff' indicator-active-color='#f43f33'>
+    <swiper class="banner" indicator-dots autoplay indicator-color='#fff' indicator-active-color='#f43f33'>
       <swiper-item class="bannerItem" wx:for="{{bannerList}}" wx:key="bannerID">
         <image src="{{item.picURL}}"></image>
       </swiper-item>
@@ -32,14 +32,17 @@
             <text wx:for="{{item.tags}}" wx:key='index' wx:for-item="tagItem">{{tagItem}}</text>
           </view>
           <view class="right-icon">
-            <text class="iconfont icon-dianzan"></text>
-            <text class="iconfont icon-shoucang"></text>
-            <text class="iconfont icon-gengduo"></text>
+            <text class="iconfont icon-dianzan "></text>
+            <text class="iconfont icon-shoucang "></text>
+            <button open-type="share"><text class="iconfont icon-gengduo buttontext"></text></button>
           </view>
 
         </view>
       </view>
     </scroll-view>
   </view>
-  <!-- 4. 图标tapbar -->
+  <!-- 4. 下拉显示区域  -->
+  <view class="bottom" wx:if="{{bottomShow}}">
+    <text>加载中.....</text>
+  </view>
 </view>

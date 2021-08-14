@@ -1,1 +1,116 @@
-/* pages/personal/personal.wxss */
+/* 1. 个人信息 */
+page {
+  background-color: #f7f7f7;
+}
+
+.profileWrapper {
+  position: relative;
+}
+
+.profileWrapper .bg {
+  width: 750rpx;
+  height: 360rpx;
+}
+
+.profileWrapper .arc {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 750rpx;
+  height: 36rpx;
+  z-index: 10;
+
+}
+
+.profileWrapper .profile {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  width: 400rpx;
+  height: 200rpx;
+  border-radius: 20rpx;
+}
+
+.profile .avartor {
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 20rpx;
+}
+
+.profile .nickName {
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 30rpx;
+}
+
+/* 2. 收藏 */
+.collect {
+  background-color: #fff;
+  height: 480rpx;
+  margin: 20rpx;
+  padding: 20rpx;
+  border-radius: 20rpx;
+}
+
+.collect .header {
+  font-size: 30rpx;
+  font-weight: bolder;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #f7f7f7;
+}
+
+.collectWrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 390rpx;
+  margin: 20rpx 0;
+}
+
+.collectWrapper .collect-item {
+  display: flex;
+  flex-direction: column;
+  height: 390rpx;
+  margin-right: 40rpx;
+  background-color: #f7f7f7;
+  border-radius: 20rpx;
+}
+
+.collectWrapper .collect-item image {
+  width: 240rpx;
+  height: 320rpx;
+  border-radius: 20rpx;
+}
+
+.collect-item .bottom {
+  width: 240rpx;
+  height: 50rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  margin-top: 20rpx;
+  padding: 0 10rpx;
+}
+
+.collectWrapper .collect-item .title {
+  font-size: 20rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.collect-item .bottom .share-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30rpx;
+  margin: 0;
+  padding: 0;
+}
