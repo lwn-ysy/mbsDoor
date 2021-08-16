@@ -4,8 +4,22 @@
     <image class="bg" src="/static/image/personal/bgImg.jpg"></image>
     <image class="arc" src="/static/image/personal/arc.png"></image>
     <view class="profile">
-      <image class="avartor" src="/static/image/personal/missing-face.png"></image>
-      <text class="nickName">未登录</text>
+      <!-- 1.1 未登录 -->
+      <block wx:if="{{!isLogin}}">
+        <button bindtap="getUserProfile" class="bt">
+          <image class="avartor" src="/static/image/personal/missing-face.png"></image>
+          <text class="nickName">未登录</text>
+        </button>
+
+      </block>
+      <!-- 1.2 已登录 -->
+      <block wx:else>
+        <image class="avartor" src="{{userInfo.avatarUrl}}"></image>
+        <text class="nickName">{{userInfo.nickName}}</text>
+        <!-- <image class="avartor" src="{{userInfo.avatarUrl}}"></image>
+        <text class="nickName">{{userInfo.nickName}}</text> -->
+      </block>
+
     </view>
   </view>
   <!-- 2. 收藏 -->

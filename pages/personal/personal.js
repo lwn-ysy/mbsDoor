@@ -1,11 +1,14 @@
 // pages/personal/personal.js
-import request from '../../utils/request'
+import request from '../../utils/request';
+let appInstance = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    userInfo: {}, //用户个人信息，包括头像和昵称
+    isLogin: false, //用户是否已登录
     collectList: [], //收藏
     historyList: [], //历史
   },
@@ -14,14 +17,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCollectList("linweinan666", "collect");
-    this.getCollectList("linweinan666", "history");
+    let openID = appInstance.globalData.openID;
+    this.getCollectList(openID, "collect");
+    this.getCollectList(openID, "history");
   },
   // 获取收藏/历史数据的函数
   // table 必须是字符串 'collect' or 'history'
-  async getCollectList(userID, table) {
-    let collectListData = await request('/personal/collect', {
-      userID,
+  async getCollectList(openID, table) {
+    let collectListData = await request('/personal/collectlist', {
+      openID,
       table,
     })
     if (table === "collect") {
@@ -36,6 +40,21 @@ Page({
 
 
   },
+
+  // 点击button，获取用户头像和昵称
+  getUserProfile() {
+    wx.getUserProfile({
+      desc: '登录获取用户的头像和昵称',
+      success: (res) => {
+        console.log("getUserProfile:", res);
+        this.setData({
+          userInfo: res.userInfo,
+          isLogin: true
+        })
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

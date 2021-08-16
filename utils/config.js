@@ -3,6 +3,6 @@
 // server_host:   上线后的服务器
 
 export default {
-  test_host: 'https://localhost:5000',
+  test_host: 'http://localhost:5000',
   host:'https://mbsdoor.com:5000'
 }

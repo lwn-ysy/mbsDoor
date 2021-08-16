@@ -119,7 +119,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 20rpx;
+}
+
+.right-icon .collected {
+  color: #d43d33;
 }
 
 .icon .left-icon {
@@ -141,7 +144,8 @@
   display: flex;
   align-items: center;
 }
-.icon .right-icon button{
+
+.icon .right-icon button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -150,12 +154,14 @@
   padding: 0;
   background-color: #fff;
 }
+
 .icon .right-icon text {
-  margin-right: 20rpx;
+  padding: 20rpx 10rpx;
   font-size: 30rpx;
   text-align: center;
 }
-.icon .right-icon .buttontext{
+
+.icon .right-icon .buttontext {
   margin-right: 0;
 }
 
