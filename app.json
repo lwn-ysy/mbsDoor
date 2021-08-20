@@ -1,9 +1,11 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/showpic/showpic",
     "pages/personal/personal",
-    "pages/collection/collection",
     "pages/show/show"
+
+
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -21,13 +23,6 @@
         "text": "主页",
         "iconPath": "/static/image/tabs/homepage.png",
         "selectedIconPath": "/static/image/tabs/homepage-selected.png"
-      },
-
-      {
-        "pagePath": "pages/collection/collection",
-        "text": "待定",
-        "iconPath": "/static/image/tabs/collection.png",
-        "selectedIconPath": "/static/image/tabs/collection-selected.png"
       },
       {
         "pagePath": "pages/show/show",

@@ -128,6 +128,7 @@
 .icon .left-icon {
   display: flex;
   align-items: center;
+  margin-left: 10rpx;
 }
 
 .icon .left-icon text {
@@ -142,6 +143,7 @@
 
 .icon .right-icon {
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
@@ -149,16 +151,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0;
   width: 30rpx;
   margin: 0;
-  padding: 0;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
   background-color: #fff;
 }
 
 .icon .right-icon text {
   padding: 20rpx 10rpx;
   font-size: 30rpx;
-  text-align: center;
+}
+.icon .right-icon .dianzan{
+  color: #d43d33;
+}
+.icon .right-icon .count {
+  font-size: 20rpx;
+  color: rgb(101, 101, 245);
+  padding-left: 0;
 }
 
 .icon .right-icon .buttontext {

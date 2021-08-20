@@ -27,6 +27,17 @@
     <view class="header">收藏</view>
     <scroll-view class="collectWrapper" enable-flex scroll-x>
       <view class="collect-item" wx:for="{{collectList}}" wx:key="shopID">
+        <!-- 2.1 删除收藏的图标 -->
+        <view class="deleteIconWrapper">
+          <view class="deleteIconOut" wx:if="{{item.goDelete}}">
+            <text class=" iconfont icon-guanbi" bindtap="switchDelete" data-index="{{index}}"></text>
+          </view>
+          <view class="deleteIconIn" wx:else>
+            <button size="mini" type="warn" data-index="{{index}}" bindtap="switchCollect">删除收藏</button>
+            <text class="iconfont icon-return" bindtap="switchDelete" data-index="{{index}}"></text>
+          </view>
+        </view>
+        <!-- 2.2 图片 -->
         <image src="{{item.picUrl}}"></image>
         <view class="bottom">
           <text class="title">{{item.title}}</text>

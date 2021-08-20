@@ -38,11 +38,13 @@ page {
   height: 200rpx;
   border-radius: 20rpx;
 }
-.profile .bt{
+
+.profile .bt {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .profile .avartor {
   width: 100rpx;
   height: 100rpx;
@@ -80,6 +82,7 @@ page {
 }
 
 .collectWrapper .collect-item {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 390rpx;
@@ -87,6 +90,27 @@ page {
   background-color: #f7f7f7;
   border-radius: 20rpx;
 }
+
+.collect-item .deleteIconWrapper {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.deleteIconWrapper .deleteIconIn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.deleteIconWrapper .deleteIconIn text{
+  font-size: 30rpx;
+  padding: 10rpx;
+}
+.deleteIconWrapper .deleteIconIn button {
+  font-size: 24rpx;
+}
+
 
 .collectWrapper .collect-item image {
   width: 240rpx;

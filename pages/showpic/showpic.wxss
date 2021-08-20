@@ -1,0 +1,123 @@
+/* pages/showpic/showpic.wxss */
+page {
+  background-color: #010101;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  margin-top: 100rpx;
+}
+
+/* 1. 图片区域 */
+.picWrapper {
+  width: 100%;
+  margin-bottom: 40rpx;
+}
+
+.picSwiper {
+  width: 100%;
+  /* 这里决定图片的高度，需要动态计算 */
+  height: calc(100vh - 460rpx);
+}
+
+.picItem .img {
+  height: 100%;
+  width: 100%;
+}
+
+/* 2. 功能图标 */
+.iconWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  margin: 0 40rpx;
+  padding-bottom: 20rpx;
+  color: #fff;
+  border-bottom: 1rpx solid #fff;
+}
+
+.iconWrapper .iconfont {
+  color: #fff;
+  font-size: 32rpx;
+}
+
+.dianzanWrapper .dianzan {
+  color: #d43d44;
+}
+
+.dianzanWrapper {
+  margin-right: 40rpx;
+}
+
+.dianzanWrapper .count {
+  font-size: 22rpx;
+  margin-left: 10rpx;
+}
+
+.iconWrapper .collected {
+  color: #d43d44;
+}
+
+.iconWrapper .shareWrapper {
+  width: 220rpx;
+  margin: 0 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20rpx;
+  border-radius: 20rpx;
+}
+
+.iconWrapper .shareWrapper .content {
+  font-size: 24rpx;
+  color: #fff;
+  margin-right: 10rpx;
+}
+
+/* 3. 详情描述区域 */
+.contentWrapper {
+  color: #fff;
+  margin: 0 40rpx;
+}
+
+.contentWrapper .header {
+  font-size: 30rpx;
+  margin: 20rpx 0;
+}
+
+.list {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.list .listItem {
+  width: 50%;
+  margin-bottom: 10rpx;
+}
+
+.listItem text {
+  font-size: 24rpx;
+}
+
+/* 5. 全屏浏览图片 */
+.zoomContainer {
+  height: 100%;
+  width: 100%;
+}
+
+.zoomContainer .imgWrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.imgWrapper image {
+  width: 100%;
+  height: 100%;
+}

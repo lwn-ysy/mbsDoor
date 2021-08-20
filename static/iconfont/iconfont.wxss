@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2730619 */
-  src: url('//at.alicdn.com/t/font_2730619_uy0awk0mw3k.woff2?t=1628510848756') format('woff2'),
-       url('//at.alicdn.com/t/font_2730619_uy0awk0mw3k.woff?t=1628510848756') format('woff'),
-       url('//at.alicdn.com/t/font_2730619_uy0awk0mw3k.ttf?t=1628510848756') format('truetype');
+  src: url('//at.alicdn.com/t/font_2730619_gm4edx7w8c.woff2?t=1629169017193') format('woff2'),
+       url('//at.alicdn.com/t/font_2730619_gm4edx7w8c.woff?t=1629169017193') format('woff'),
+       url('//at.alicdn.com/t/font_2730619_gm4edx7w8c.ttf?t=1629169017193') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,26 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-fenxiang1:before {
+  content: "\e612";
+}
+
+.icon-return:before {
+  content: "\e6ba";
+}
+
+.icon-shanchu:before {
+  content: "\e615";
+}
+
+.icon-guanbi:before {
+  content: "\e60b";
+}
+
+.icon-fenxiang:before {
+  content: "\e72f";
 }
 
 .icon-addressbook:before {

@@ -1,0 +1,59 @@
+<!--pages/showpic/showpic.wxml-->
+<view class="container" wx:if="{{goZoom}}">
+  <!-- 1. 图片展示区域 -->
+  <view class="picWrapper">
+    <swiper class="picSwiper" current="{{currentIndex}}">
+      <swiper-item class="picItem" wx:for="{{shopData.urlList}}" wx:key="index" bindtap="handleTap" data-url="{{item}}"
+        data-index="{{index}}">
+        <image class="img" src="{{item}}" mode="aspectFit"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 2. icon点赞收藏分享 -->
+  <view class="iconWrapper">
+    <view class="dianzanWrapper">
+      <text class="iconfont icon-dianzan {{shopData.isDianzan ? 'dianzan' : ''}}"></text>
+      <text class="count">{{shopData.dianzanCount}}</text>
+    </view>
+    <text class="iconfont icon-shoucang {{shopData.isCollected ? 'collected' : ''}}"></text>
+    <button class="shareWrapper" type="primary" open-type="share">
+      <text class="content">转发给朋友</text>
+      <text class="iconfont icon-fenxiang"></text>
+    </button>
+  </view>
+  <!-- 3. 详情描述 -->
+  <view class="contentWrapper">
+    <view class="header">{{shopData.shopList.title}}</view>
+    <view class="list">
+      <view class="listItem">
+        <text class="left">发布日期：</text>
+        <text class="content">{{shopData.shopDetail.publishdate}}</text>
+      </view>
+      <view class="listItem">
+        <text class="left">材质：</text>
+        <text class="content">{{shopData.shopDetail.material}}</text>
+      </view>
+      <view class="listItem">
+        <text class="left">颜色：</text>
+        <text class="content">{{shopData.shopDetail.color}}</text>
+      </view>
+      <view class="listItem">
+        <text class="left">风格：</text>
+        <text class="content">{{shopData.shopDetail.category}}</text>
+      </view>
+      <view class="listItem">
+        <text class="left">类型：</text>
+        <text class="content">{{shopData.shopDetail.type}}</text>
+      </view>
+    </view>
+
+  </view>
+</view>
+
+<view class="zoomContainer" wx:else>
+  <view class="imgWrapper" bindtouchstart="touchstartCallback" bindtouchmove="touchmoveCallback"
+    bindtouchend="touchendCallback" bindtap="switchHalfScreen">
+    <image mode="aspectFit" src="{{currentPicUrl}}"
+      style="transform:scale({{scale}}) translate({{transitionPos.x}}rpx,{{transitionPos.y}}rpx);"></image>
+  </view>
+</view>

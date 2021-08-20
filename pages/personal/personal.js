@@ -11,15 +11,14 @@ Page({
     isLogin: false, //用户是否已登录
     collectList: [], //收藏
     historyList: [], //历史
+    goDelete: true, //切换删除的真实按钮
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let openID = appInstance.globalData.openID;
-    this.getCollectList(openID, "collect");
-    this.getCollectList(openID, "history");
+
   },
   // 获取收藏/历史数据的函数
   // table 必须是字符串 'collect' or 'history'
@@ -28,13 +27,17 @@ Page({
       openID,
       table,
     })
+    let collectList = collectListData.data.map(e => {
+      e.goDelete = true;
+      return e;
+    })
     if (table === "collect") {
       this.setData({
-        collectList: collectListData.data
+        collectList: collectList
       })
     } else {
       this.setData({
-        historyList: collectListData.data
+        historyList: collectList
       })
     }
 
@@ -55,6 +58,37 @@ Page({
     })
   },
 
+  // 点击，切换到真实的删除按钮
+  switchDelete(e) {
+    let _index = e.currentTarget.dataset.index;
+    let oldCollectList = this.data.collectList;
+    oldCollectList[_index].goDelete = !oldCollectList[_index].goDelete;
+    this.setData({
+      collectList: oldCollectList
+    })
+  },
+  // 切换 收藏
+  // TODO: 这里跟index.js的switchCollect函数功能差不多，后期可以考虑优化
+  switchCollect(e) {
+    let _index = e.currentTarget.dataset.index;
+    let _collectList = this.data.collectList;
+    let openID = appInstance.globalData.openID;
+    let shopID = _collectList[_index].shopID;
+    _collectList.splice(_index, 1);
+    // 更改本地的collectList数据
+    this.setData({
+      collectList: _collectList,
+    })
+    // 向服务端发送请求,更改数据库的collect表数据
+    request('/personal/collect', {
+      openID,
+      shopID
+    }, 'POST')
+    wx.setStorage({
+      key: 'collect',
+      data: true
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -66,7 +100,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let openID = appInstance.globalData.openID;
+    this.getCollectList(openID, "collect");
+    this.getCollectList(openID, "history");
   },
 
   /**
