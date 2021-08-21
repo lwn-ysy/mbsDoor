@@ -7,6 +7,10 @@
 
 
   ],
+  "usingComponents": {
+    "mp-loading": "weui-miniprogram/loading/loading",
+    "mp-half-screen-dialog": "weui-miniprogram/half-screen-dialog/half-screen-dialog"
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

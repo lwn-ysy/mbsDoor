@@ -11,7 +11,26 @@ Page({
     isLogin: false, //用户是否已登录
     collectList: [], //收藏
     historyList: [], //历史
-    goDelete: true, //切换删除的真实按钮
+    showDeleteIcon: false, //显示图片右上角的删除icon
+    showDeleteButton: true, //切换单个删除按钮
+    show: false, // 是否显示删除半屏弹窗
+    title: '', // 要删除的title
+    desc: '', //删除的描述
+    buttons: [{
+        type: 'default',
+        className: '',
+        text: '取消',
+        value: 0
+      },
+      {
+        type: 'default',
+        className: '',
+        text: '确认',
+        value: 1
+      }
+    ], // 删除/取消的按钮
+    deleteCollectShopID: '', //要删除的shopID
+    deleteAllCollect: false, //是否删除所有收藏
   },
 
   /**
@@ -20,6 +39,26 @@ Page({
   onLoad: function (options) {
 
   },
+  goShowpic(e) {
+    let shopID = e.currentTarget.dataset.shopid;
+    wx.navigateTo({
+      url: `../showpic/showpic?shopID=${shopID}`,
+    })
+  },
+  // 显示删除按钮
+  showDeleteButton() {
+    this.setData({
+      showDeleteIcon: true,
+      showDeleteButton: false
+    })
+  },
+  // 隐藏删除按钮
+  hideDeleteButton() {
+    this.setData({
+      showDeleteIcon: false,
+      showDeleteButton: true
+    })
+  },
   // 获取收藏/历史数据的函数
   // table 必须是字符串 'collect' or 'history'
   async getCollectList(openID, table) {
@@ -27,21 +66,15 @@ Page({
       openID,
       table,
     })
-    let collectList = collectListData.data.map(e => {
-      e.goDelete = true;
-      return e;
-    })
     if (table === "collect") {
       this.setData({
-        collectList: collectList
+        collectList: collectListData.data
       })
     } else {
       this.setData({
-        historyList: collectList
+        historyList: collectListData.data
       })
     }
-
-
   },
 
   // 点击button，获取用户头像和昵称
@@ -58,36 +91,60 @@ Page({
     })
   },
 
-  // 点击，切换到真实的删除按钮
-  switchDelete(e) {
-    let _index = e.currentTarget.dataset.index;
-    let oldCollectList = this.data.collectList;
-    oldCollectList[_index].goDelete = !oldCollectList[_index].goDelete;
+  // 点击，切换到半屏弹窗，进一步操作删除
+  showDeleteOneDialog(e) {
     this.setData({
-      collectList: oldCollectList
+      desc: '删除此条收藏？',
+      deleteCollectShopID: e.currentTarget.dataset.shopid,
+      title: e.currentTarget.dataset.title,
+      show: true
     })
   },
-  // 切换 收藏
-  // TODO: 这里跟index.js的switchCollect函数功能差不多，后期可以考虑优化
-  switchCollect(e) {
-    let _index = e.currentTarget.dataset.index;
-    let _collectList = this.data.collectList;
-    let openID = appInstance.globalData.openID;
-    let shopID = _collectList[_index].shopID;
-    _collectList.splice(_index, 1);
-    // 更改本地的collectList数据
+  // 点击，切换到半屏弹窗，进一步操作删除
+  showDeleteAllDialog() {
     this.setData({
-      collectList: _collectList,
+      desc: '删除所有收藏？',
+      title: '',
+      deleteAllCollect: true,
+      show: true
     })
-    // 向服务端发送请求,更改数据库的collect表数据
-    request('/personal/collect', {
-      openID,
-      shopID
-    }, 'POST')
+  },
+  // 半屏弹窗，真实删除单个收藏的语句
+  async deleleCollect(e) {
+    let deleteAllCollect = this.data.deleteAllCollect;
+    if (e.detail.index === 0) {
+      this.setData({
+        deleteAllCollect: false,
+        show: false
+      });
+      return;
+    };
+    let openID = appInstance.globalData.openID;
+    if (deleteAllCollect === true) {
+      // ???
+    } else {
+      let shopID = this.data.deleteCollectShopID;
+      // 向服务端发送请求,更改数据库的collect表数据
+      await request('/personal/collect', {
+        openID,
+        shopID
+      }, 'POST');
+    }
+
+    this.setData({
+      show: false
+    });
+    // 请求新收藏数据
+    this.getCollectList(openID, "collect");
+    // 告诉index界面，收藏数据有更新
     wx.setStorage({
       key: 'collect',
       data: true
     });
+  },
+  // 半屏弹窗，删除所有收藏
+  deleteAll() {
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

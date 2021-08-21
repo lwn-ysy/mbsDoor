@@ -1,0 +1,22 @@
+{
+  "name": "mbs",
+  "version": "1.0.0",
+  "description": "show picture use mbsDoor ship in wx\r 1. 微信小程序",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lwn-ysy/mbsDoor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lwn-ysy/mbsDoor/issues"
+  },
+  "homepage": "https://github.com/lwn-ysy/mbsDoor#readme",
+  "dependencies": {
+    "weui-miniprogram": "^1.0.8"
+  }
+}

@@ -24,21 +24,25 @@
   </view>
   <!-- 2. 收藏 -->
   <view class="collect">
-    <view class="header">收藏</view>
+    <view class="header">
+      <view class="title">收藏</view>
+      <view class="btn">
+        <button type="primary" size="mini" bindtap="showDeleteAllDialog">删除全部</button>
+        <button type="primary" size="mini" wx:if="{{showDeleteButton}}" bindtap="showDeleteButton">删除</button>
+        <button type="primary" size="mini" wx:else bindtap="hideDeleteButton">取消</button>
+      </view>
+    </view>
+
     <scroll-view class="collectWrapper" enable-flex scroll-x>
       <view class="collect-item" wx:for="{{collectList}}" wx:key="shopID">
-        <!-- 2.1 删除收藏的图标 -->
+        <!-- 2.1 图片右上角删除图标 -->
         <view class="deleteIconWrapper">
-          <view class="deleteIconOut" wx:if="{{item.goDelete}}">
-            <text class=" iconfont icon-guanbi" bindtap="switchDelete" data-index="{{index}}"></text>
-          </view>
-          <view class="deleteIconIn" wx:else>
-            <button size="mini" type="warn" data-index="{{index}}" bindtap="switchCollect">删除收藏</button>
-            <text class="iconfont icon-return" bindtap="switchDelete" data-index="{{index}}"></text>
+          <view class="deleteIconOut" wx:if="{{showDeleteIcon}}">
+            <text class=" iconfont icon-guanbi" bindtap="showDeleteOneDialog" data-shopid="{{item.shopID}}" data-title="{{item.title}}"></text>
           </view>
         </view>
         <!-- 2.2 图片 -->
-        <image src="{{item.picUrl}}"></image>
+        <image src="{{item.picUrl}}" data-shopid="{{item.shopID}}" bindtap="goShowpic"></image>
         <view class="bottom">
           <text class="title">{{item.title}}</text>
           <button open-type="share" class="share-button" data-url="{{item.picUrl}}" data-title="{{item.title}}"><text
@@ -46,6 +50,9 @@
         </view>
       </view>
     </scroll-view>
+    <!-- 2.3 删除的半屏弹窗 -->
+    <mp-half-screen-dialog bindbuttontap="deleleCollect" show="{{show}}" title="删除收藏" subTitle="{{title}}"
+      desc="{{desc}}" buttons="{{buttons}}"></mp-half-screen-dialog>
   </view>
   <!-- 3. 历史 -->
   <view class="collect">
@@ -61,4 +68,5 @@
       </view>
     </scroll-view>
   </view>
+
 </view>

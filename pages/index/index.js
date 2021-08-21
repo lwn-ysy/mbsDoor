@@ -150,9 +150,9 @@ Page({
 
   },
 
+  // 跳转showpic界面
   goShowPic(e) {
     let shopID = e.currentTarget.dataset.shopid;
-    console.log(shopID)
     wx.navigateTo({
       url: `../showpic/showpic?shopID=${shopID}`,
     })
@@ -168,6 +168,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
+    this.timer = setInterval(() => {
+      this.setData({
+        show: !this.data.show
+      })
+    }, 2000);
 
     // personal界面更新了收藏数据,这边index界面也要重新更新
     //这里判断storage的collect长度Lengt判断

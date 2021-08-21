@@ -22,7 +22,8 @@
     <scroll-view class="shop" enable-flex scroll-y>
       <view class="shopItem {{item.isFull === 1 ? 'fullShop' : 'halfShop'}} " wx:for="{{shopList}}" wx:key="shopID">
         <!-- 3.1 图片 -->
-        <image data-shopid="{{item.shopID}}" bindtap="goShowPic" class="{{item.isFull === 1 ? 'full' : 'half'}}" src="{{item.picUrl}}"></image>
+        <image data-shopid="{{item.shopID}}" bindtap="goShowPic" class="{{item.isFull === 1 ? 'full' : 'half'}}"
+          src="{{item.picUrl}}"></image>
         <!-- 3.2 文字说明  -->
         <text class="des">{{item.des}}</text>
         <!-- 3.3 底部图标 -->
@@ -46,6 +47,9 @@
   </view>
   <!-- 4. 下拉显示区域  -->
   <view class="bottom" wx:if="{{bottomShow}}">
-    <text>加载中.....</text>
+    <mp-loading type="circle"></mp-loading>
   </view>
+
+
+
 </view>

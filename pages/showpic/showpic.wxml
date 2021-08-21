@@ -1,9 +1,9 @@
 <!--pages/showpic/showpic.wxml-->
-<view class="container" wx:if="{{goZoom}}">
+<view class="container">
   <!-- 1. 图片展示区域 -->
   <view class="picWrapper">
-    <swiper class="picSwiper" current="{{currentIndex}}">
-      <swiper-item class="picItem" wx:for="{{shopData.urlList}}" wx:key="index" bindtap="handleTap" data-url="{{item}}"
+    <swiper class="picSwiper">
+      <swiper-item class="picItem" wx:for="{{shopData.urlList}}" wx:key="item" bindtap="handleTap" data-url="{{item}}"
         data-index="{{index}}">
         <image class="img" src="{{item}}" mode="aspectFit"></image>
       </swiper-item>
@@ -12,13 +12,13 @@
   <!-- 2. icon点赞收藏分享 -->
   <view class="iconWrapper">
     <view class="dianzanWrapper">
-      <text class="iconfont icon-dianzan {{shopData.isDianzan ? 'dianzan' : ''}}"></text>
+      <text class="iconfont icon-good {{shopData.isDianzan ? 'dianzan' : ''}}" bindtap="switchDianzan"></text>
       <text class="count">{{shopData.dianzanCount}}</text>
     </view>
-    <text class="iconfont icon-shoucang {{shopData.isCollected ? 'collected' : ''}}"></text>
+    <text class="iconfont icon-favorite {{shopData.isCollected ? 'collected' : ''}}" bindtap="switchCollect"></text>
     <button class="shareWrapper" type="primary" open-type="share">
       <text class="content">转发给朋友</text>
-      <text class="iconfont icon-fenxiang"></text>
+      <text class="iconfont icon-share"></text>
     </button>
   </view>
   <!-- 3. 详情描述 -->
@@ -50,7 +50,7 @@
   </view>
 </view>
 
-<view class="zoomContainer" wx:else>
+<view class="zoomContainer" wx:if="{{goZoom}}">
   <view class="imgWrapper" bindtouchstart="touchstartCallback" bindtouchmove="touchmoveCallback"
     bindtouchend="touchendCallback" bindtap="switchHalfScreen">
     <image mode="aspectFit" src="{{currentPicUrl}}"

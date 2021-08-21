@@ -1,5 +1,6 @@
 /* pages/showpic/showpic.wxss */
 page {
+  position: relative;
   background-color: #010101;
   height: 100%;
   width: 100%;
@@ -9,7 +10,7 @@ page {
 .container {
   height: 100%;
   width: 100%;
-  margin-top: 100rpx;
+  /* margin-top: 100rpx; */
 }
 
 /* 1. 图片区域 */
@@ -43,7 +44,7 @@ page {
 
 .iconWrapper .iconfont {
   color: #fff;
-  font-size: 32rpx;
+  font-size: 40rpx;
 }
 
 .dianzanWrapper .dianzan {
@@ -108,8 +109,12 @@ page {
 
 /* 5. 全屏浏览图片 */
 .zoomContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
   height: 100%;
   width: 100%;
+  background-color: #010101;
 }
 
 .zoomContainer .imgWrapper {

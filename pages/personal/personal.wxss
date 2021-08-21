@@ -68,10 +68,20 @@ page {
 }
 
 .collect .header {
-  font-size: 30rpx;
-  font-weight: bolder;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   padding-bottom: 20rpx;
   border-bottom: 1rpx solid #f7f7f7;
+}
+.collect .header .title{
+  font-size: 30rpx;
+  font-weight: bolder;
+}
+.collect .header .btn button{
+  font-size: 20rpx;
+  margin-left: 20rpx;
 }
 
 .collectWrapper {
@@ -96,21 +106,6 @@ page {
   right: 0;
   top: 0;
 }
-
-.deleteIconWrapper .deleteIconIn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.deleteIconWrapper .deleteIconIn text{
-  font-size: 30rpx;
-  padding: 10rpx;
-}
-.deleteIconWrapper .deleteIconIn button {
-  font-size: 24rpx;
-}
-
 
 .collectWrapper .collect-item image {
   width: 240rpx;

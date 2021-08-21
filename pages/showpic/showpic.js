@@ -1,4 +1,6 @@
 // pages/showpic/showpic.js
+import request from '../../utils/request';
+let appInstance = getApp();
 Page({
 
   /**
@@ -35,7 +37,7 @@ Page({
         "title": "DR-A004梅兰竹菊"
       }
     },
-    goZoom: true, //
+    goZoom: false, //
     currentIndex: 0, //指定轮播图的播放的图片index
     currentPicUrl: '', //全屏时，图片地址
     distance: 0, //缩放功能，手指移动的距离
@@ -64,7 +66,6 @@ Page({
   // 图片的像素最好在500px以上
   // 手指开始触摸时
   touchstartCallback(e) {
-    console.log('start-->长度', e.touches.length)
     let timeStamp = e.timeStamp; // 辅助工具，辨别真的的tap事件，而不是touch触摸接受后导致的tap
     this.setData({
       timeStamp
@@ -90,7 +91,6 @@ Page({
   },
   // 触摸过程
   touchmoveCallback(e) {
-    console.log('move-->长度', e.touches.length)
     if (e.touches.length === 1) {
       let scale = this.data.scale;
       if (scale <= 1) {
@@ -151,7 +151,6 @@ Page({
   },
   // 触摸结束
   touchendCallback(e) {
-    console.log('end-->长度', e.touches.length)
     if (e.touches.length > 1) {
       return;
     }
@@ -182,7 +181,6 @@ Page({
     }
   },
   switchHalfScreen(e) {
-    console.log('tap-->长度', e.touches.length)
     let timeStamp = this.data.timeStamp;
     let newTimeStamp = e.timeStamp;
     // 有move过程大于200ms时不触发tap
@@ -190,8 +188,10 @@ Page({
       return;
     }
     // TODO: 这里的点击有时touches.length是0，还存在疑问;正常永远都是1
+
+    let goZoom = !this.data.goZoom;
     this.setData({
-      goZoom: !this.data.goZoom,
+      goZoom,
       scale: 1,
       currentIndex: this.data.currentIndex,
       transitionPos: {
@@ -200,11 +200,21 @@ Page({
       }
     })
   },
+    // 外围的点击tap切换事件
+    handleTap(e) {
+      let currentPicUrl = e.currentTarget.dataset.url || '';
+      let currentIndex = e.currentTarget.dataset.index || 0;
+      let goZoom = !this.data.goZoom;
+      this.setData({
+        goZoom,
+        currentPicUrl,
+        currentIndex
+      })
+    },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    console.log(options)
+  onLoad: async function (options) {
     // 获取当前窗口的宽高
     wx.getSystemInfo({
       success: (result) => {
@@ -216,17 +226,61 @@ Page({
         })
       },
     })
+    // 获取初始data
+    let shopID = options.shopID;
+    let openID = appInstance.globalData.openID;
+    let shopData = await request('/showpic/shop', {
+      shopID,
+      openID
+    })
+    this.setData({
+      shopData: shopData.data
+    })
   },
 
-  // 外围的点击tap切换事件
-  handleTap(e) {
-    let currentPicUrl = e.currentTarget.dataset.url || '';
-    let currentIndex = e.currentTarget.dataset.index || 0;
+
+
+  // 点赞操作
+  async switchDianzan(e) {
+    let oldShopData = this.data.shopData;
+    let shopID = this.data.shopData.shopList.shopID;
+    let openID = appInstance.globalData.openID;
+    // 本地更改是否已经点赞
+    oldShopData.isDianzan = !oldShopData.isDianzan;
     this.setData({
-      goZoom: !this.data.goZoom,
-      currentPicUrl,
-      currentIndex
+      shopData: oldShopData
     })
+    let dianzanCount = await request('/personal/dianzan', {
+      shopID,
+      openID
+    }, 'POST', );
+    // 接受后端返回的点赞数量，重新更新数据
+    oldShopData.dianzanCount = dianzanCount.data;
+    this.setData({
+      shopData: oldShopData
+    })
+    //告诉index界面，数据有更新
+    wx.setStorageSync('collect', true);
+  },
+  // 收藏操作
+  switchCollect(e) {
+    let oldShopData = this.data.shopData;
+    let shopID = this.data.shopData.shopList.shopID;
+    let openID = appInstance.globalData.openID;
+    oldShopData.isCollected = !oldShopData.isCollected;
+    // 更改本地的shopList数据
+    this.setData({
+      shopData: oldShopData,
+    })
+    // 向服务端发送请求,更改数据库的collect表数据
+    console.log('请求服务端的data数据：', openID, shopID);
+    request('/personal/collect', {
+      openID,
+      shopID
+    }, 'POST');
+
+    //告诉index界面，数据有更新
+    wx.setStorageSync('collect', true);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
