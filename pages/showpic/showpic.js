@@ -37,7 +37,11 @@ Page({
         "title": "DR-A004梅兰竹菊"
       }
     },
-    goZoom: false, //
+    goZoom: {
+      inAnimate: false,
+      outAnimate: false
+    }, //
+    _hidden:true,
     currentIndex: 0, //指定轮播图的播放的图片index
     currentPicUrl: '', //全屏时，图片地址
     distance: 0, //缩放功能，手指移动的距离
@@ -189,7 +193,9 @@ Page({
     }
     // TODO: 这里的点击有时touches.length是0，还存在疑问;正常永远都是1
 
-    let goZoom = !this.data.goZoom;
+    let goZoom = this.data.goZoom;
+    goZoom.inAnimate = false;
+    goZoom.outAnimate = true;
     this.setData({
       goZoom,
       scale: 1,
@@ -200,46 +206,20 @@ Page({
       }
     })
   },
-    // 外围的点击tap切换事件
-    handleTap(e) {
-      let currentPicUrl = e.currentTarget.dataset.url || '';
-      let currentIndex = e.currentTarget.dataset.index || 0;
-      let goZoom = !this.data.goZoom;
-      this.setData({
-        goZoom,
-        currentPicUrl,
-        currentIndex
-      })
-    },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: async function (options) {
-    // 获取当前窗口的宽高
-    wx.getSystemInfo({
-      success: (result) => {
-        this.setData({
-          clientValue: {
-            x: result.windowWidth,
-            y: result.windowHeight
-          }
-        })
-      },
-    })
-    // 获取初始data
-    let shopID = options.shopID;
-    let openID = appInstance.globalData.openID;
-    let shopData = await request('/showpic/shop', {
-      shopID,
-      openID
-    })
+  // 外围的点击tap切换事件
+  handleTap(e) {
+    let currentPicUrl = e.currentTarget.dataset.url || '';
+    let currentIndex = e.currentTarget.dataset.index || 0;
+    let goZoom = this.data.goZoom;
+    goZoom.inAnimate = true;
+    goZoom.outAnimate = false;
     this.setData({
-      shopData: shopData.data
+      goZoom,
+      _hidden:false,
+      currentPicUrl,
+      currentIndex
     })
   },
-
-
-
   // 点赞操作
   async switchDianzan(e) {
     let oldShopData = this.data.shopData;
@@ -281,6 +261,32 @@ Page({
 
     //告诉index界面，数据有更新
     wx.setStorageSync('collect', true);
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: async function (options) {
+    // 获取当前窗口的宽高
+    wx.getSystemInfo({
+      success: (result) => {
+        this.setData({
+          clientValue: {
+            x: result.windowWidth,
+            y: result.windowHeight
+          }
+        })
+      },
+    })
+    // 获取初始data
+    let shopID = options.shopID;
+    let openID = appInstance.globalData.openID;
+    let shopData = await request('/showpic/shop', {
+      shopID,
+      openID
+    })
+    this.setData({
+      shopData: shopData.data
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

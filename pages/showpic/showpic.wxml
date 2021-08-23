@@ -50,7 +50,7 @@
   </view>
 </view>
 
-<view class="zoomContainer" wx:if="{{goZoom}}">
+<view class="zoomContainer  {{goZoom.inAnimate === true ? 'scale-up-center' : ''}} {{goZoom.outAnimate === true ? 'scale-out-top' : ''}}" hidden="{{_hidden}}">
   <view class="imgWrapper" bindtouchstart="touchstartCallback" bindtouchmove="touchmoveCallback"
     bindtouchend="touchendCallback" bindtap="switchHalfScreen">
     <image mode="aspectFit" src="{{currentPicUrl}}"

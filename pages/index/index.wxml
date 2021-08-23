@@ -38,7 +38,9 @@
             <text class="count">{{item.dianzan}}</text>
             <text class="iconfont icon-shoucang {{item.isCollected ? 'collected' : '' }}" bindtap="switchCollect"
               data-index="{{index}}"></text>
-            <button open-type="share"><text class="iconfont icon-fenxiang buttontext"></text></button>
+            <button open-type="share" data-picurl="{{item.picUrl}}">
+              <text class="iconfont icon-fenxiang buttontext"></text>
+            </button>
           </view>
 
         </view>
