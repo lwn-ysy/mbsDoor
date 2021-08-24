@@ -41,7 +41,7 @@ Page({
       inAnimate: false,
       outAnimate: false
     }, //
-    _hidden:true,
+    _hidden: true,
     currentIndex: 0, //指定轮播图的播放的图片index
     currentPicUrl: '', //全屏时，图片地址
     distance: 0, //缩放功能，手指移动的距离
@@ -199,7 +199,7 @@ Page({
     this.setData({
       goZoom,
       scale: 1,
-      currentIndex: this.data.currentIndex,
+      // currentIndex: this.data.currentIndex,
       transitionPos: {
         x: 0,
         y: 0
@@ -209,17 +209,41 @@ Page({
   // 外围的点击tap切换事件
   handleTap(e) {
     let currentPicUrl = e.currentTarget.dataset.url || '';
-    let currentIndex = e.currentTarget.dataset.index || 0;
+    // let currentIndex = e.currentTarget.dataset.index || 0;
+    let goZoom = this.data.goZoom;
+    goZoom.inAnimate = true;
+    goZoom.outAnimate = false;
+    this.setData({
+      _hidden: true,
+      currentPicUrl,
+    })
+    // this.setData({
+    //   goZoom,
+    //   _hidden: false,
+    //   currentIndex,
+    // })
+  },
+  // 图片加载完成，才触发动画，避免晃动的作用
+  imgLoaded() {
     let goZoom = this.data.goZoom;
     goZoom.inAnimate = true;
     goZoom.outAnimate = false;
     this.setData({
       goZoom,
-      _hidden:false,
-      currentPicUrl,
-      currentIndex
+      _hidden: false,
+      // currentIndex,
     })
   },
+  // 动画结束后，重置url,后面才能再次触发imgLoad
+  animationendHandle(e) {
+    if (e.detail.animationName === "scale-out-top") {
+      this.setData({
+        currentPicUrl: ''
+      });
+      return;
+    }
+  },
+
   // 点赞操作
   async switchDianzan(e) {
     let oldShopData = this.data.shopData;

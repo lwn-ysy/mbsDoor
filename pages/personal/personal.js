@@ -121,7 +121,10 @@ Page({
     };
     let openID = appInstance.globalData.openID;
     if (deleteAllCollect === true) {
-      // ???
+      // 删除所有收藏
+      await request('/personal/collect',{
+        openID
+      },'DELETE')
     } else {
       let shopID = this.data.deleteCollectShopID;
       // 向服务端发送请求,更改数据库的collect表数据

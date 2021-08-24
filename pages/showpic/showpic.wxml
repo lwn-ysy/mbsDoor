@@ -50,10 +50,12 @@
   </view>
 </view>
 
-<view class="zoomContainer  {{goZoom.inAnimate === true ? 'scale-up-center' : ''}} {{goZoom.outAnimate === true ? 'scale-out-top' : ''}}" hidden="{{_hidden}}">
+<view
+  class="zoomContainer  {{goZoom.inAnimate === true ? 'scale-up-center' : ''}} {{goZoom.outAnimate === true ? 'scale-out-top' : ''}}"
+  hidden="{{_hidden}}" bindanimationend="animationendHandle">
   <view class="imgWrapper" bindtouchstart="touchstartCallback" bindtouchmove="touchmoveCallback"
     bindtouchend="touchendCallback" bindtap="switchHalfScreen">
-    <image mode="aspectFit" src="{{currentPicUrl}}"
+    <image mode="aspectFit" src="{{currentPicUrl}}" bindload="imgLoaded"
       style="transform:scale({{scale}}) translate({{transitionPos.x}}rpx,{{transitionPos.y}}rpx);"></image>
   </view>
 </view>
