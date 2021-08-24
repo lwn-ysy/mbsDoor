@@ -131,7 +131,32 @@ Page({
    */
   onLoad: function (options) {
 
-    //
+    // [1] 发起请求，获取轮播图数据
+    this.getBannerList();
+
+    // 判断是否登录。
+    // TODO:需要对openID和时间戳加密后，再保存到缓存
+
+    // 从storage取login信息
+    let loginInfo = wx.getStorageSync('loginInfo');
+    if (loginInfo) { // 存在登录信息
+      let oldTimeStamp = loginInfo.timeStamp;
+      let diff = Date.now() - oldTimeStamp;
+      if (diff < 259200000) { // 且距离上次登录少于3天
+        let openID = loginInfo.openID;
+        instance.globalData.openID = openID;
+        this.getCategoryList(openID);
+        wx.setStorage({
+          key: 'loginInfo',
+          data: {
+            openID: openID,
+            timeStamp: Date.now(),
+          }
+        });
+        return;
+      }
+    }
+    // 发起登录请求
     wx.login({
       success: async res => {
         if (res.code) {
@@ -140,17 +165,19 @@ Page({
           });
           let openID = loginData.data.openid;
           instance.globalData.openID = openID;
+          wx.setStorage({
+            key: 'loginInfo',
+            data: {
+              openID: openID,
+              timeStamp: Date.now(),
+            }
+          });
 
           //[2] 获取tab标签数据
           this.getCategoryList(openID);
         }
       }
     })
-
-    // [1] 发起请求，获取轮播图数据
-    this.getBannerList();
-
-
   },
 
 
