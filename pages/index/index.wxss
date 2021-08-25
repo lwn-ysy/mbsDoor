@@ -103,7 +103,6 @@
 .shop .shopItem .des {
   font-size: 22rpx;
   margin: 0 20rpx;
-  height: 60rpx;
   /* 多行文本溢出隐藏 省略号代替*/
   overflow: hidden;
   text-overflow: ellipsis;
@@ -142,6 +141,7 @@
 }
 
 .icon .right-icon {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -163,9 +163,11 @@
   padding: 20rpx 10rpx;
   font-size: 30rpx;
 }
-.icon .right-icon .dianzan{
+
+.icon .right-icon .dianzan {
   color: #d43d33;
 }
+
 .icon .right-icon .count {
   font-size: 20rpx;
   color: rgb(101, 101, 245);
@@ -175,6 +177,37 @@
 .icon .right-icon .buttontext {
   margin-right: 0;
 }
+
+.right-icon .dianzan-gif {
+  position: absolute;
+  width: 100rpx;
+  height: 100rpx;
+  left: 0;
+}
+
+/* gif动画 */
+.fade-out-top {
+  animation: fade-out-top 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+/* 点赞的动画 */
+@keyframes fade-out-top {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  99% {
+    transform: translateY(-200rpx);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-200rpx);
+    opacity: 0;
+  }
+}
+
 
 /* 4.上拉，显示加载中 */
 .bottom {

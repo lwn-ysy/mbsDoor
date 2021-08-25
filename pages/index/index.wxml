@@ -32,9 +32,13 @@
           <view class="left-icon">
             <text wx:for="{{item.tags}}" wx:key='index' wx:for-item="tagItem">{{tagItem}}</text>
           </view>
+          <!-- 3.3.2 右边小图标 -->
           <view class="right-icon">
             <text class="iconfont icon-dianzan {{item.isDianzan ? 'dianzan' : '' }}" bindtap="switchDianzan"
               data-index="{{index}}"></text>
+            <!-- 3.3.2.1 点赞gif -->
+            <image src="/static/image/dianzan.gif" class="dianzan-gif fade-out-top" wx:if="{{item.dianzanGif}}">
+            </image>
             <text class="count">{{item.dianzan}}</text>
             <text class="iconfont icon-shoucang {{item.isCollected ? 'collected' : '' }}" bindtap="switchCollect"
               data-index="{{index}}"></text>

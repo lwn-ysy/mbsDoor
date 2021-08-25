@@ -12,6 +12,7 @@ Page({
     selectID: 10001, //当前选中的标签,number类型
     shopList: [], //图片区域数据
     bottomShow: false, // 上拉，加载提示的显示
+    showGif: []
   },
 
   // [1] 获取轮播图数据的函数
@@ -55,6 +56,7 @@ Page({
     // 需要手动转为数组
     let newShopList = shopListData.data.map(item => {
       item.tags = item.tags.split(',');
+      item.dianzanGif = false;
       return item;
     })
     this.setData({
@@ -104,8 +106,17 @@ Page({
     let openID = instance.globalData.openID;
     // 本地更改是否已经点赞
     oldShopList[_index].isDianzan = !oldShopList[_index].isDianzan;
+    if (oldShopList[_index].isDianzan === true) {
+      oldShopList[_index].dianzanGif = true;
+      wx.vibrateShort({ // 振动
+        type: 'medium',
+      });
+    }else{
+      oldShopList[_index].dianzanGif = false;
+    }
+
     this.setData({
-      shopList: oldShopList
+      shopList: oldShopList,
     })
     let dianzanCount = await request('/personal/dianzan', {
       shopID,
