@@ -55,7 +55,7 @@
       desc="{{desc}}" buttons="{{buttons}}"></mp-half-screen-dialog>
   </view>
   <!-- 3. 历史 -->
-  <view class="collect">
+  <!-- <view class="collect">
     <view class="header">历史</view>
     <scroll-view class="collectWrapper" enable-flex scroll-x>
       <view class="collect-item" wx:for="{{historyList}}" wx:key="shopID">
@@ -67,6 +67,6 @@
         </view>
       </view>
     </scroll-view>
-  </view>
+  </view> -->
 
 </view>

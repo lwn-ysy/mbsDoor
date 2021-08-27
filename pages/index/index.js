@@ -107,7 +107,7 @@ Page({
     // 本地更改是否已经点赞
     oldShopList[_index].isDianzan = !oldShopList[_index].isDianzan;
     if (oldShopList[_index].isDianzan === true) {
-      oldShopList[_index].dianzanGif = true;
+      oldShopList[_index].dianzanGif = true; // gif图片动画
       wx.vibrateShort({ // 振动
         type: 'medium',
       });

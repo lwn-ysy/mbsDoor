@@ -14,6 +14,7 @@
     <view class="dianzanWrapper">
       <text class="iconfont icon-good {{shopData.isDianzan ? 'dianzan' : ''}}" bindtap="switchDianzan"></text>
       <text class="count">{{shopData.dianzanCount}}</text>
+      <image src="/static/image/dianzan1.png" class="dianzan-gif fade-out-top" wx:if="{{shopData.dianzanGif}}"></image>
     </view>
     <text class="iconfont icon-favorite {{shopData.isCollected ? 'collected' : ''}}" bindtap="switchCollect"></text>
     <button class="shareWrapper" type="primary" open-type="share">

@@ -251,6 +251,14 @@ Page({
     let openID = appInstance.globalData.openID;
     // 本地更改是否已经点赞
     oldShopData.isDianzan = !oldShopData.isDianzan;
+    if (oldShopData.isDianzan === true) {
+      wx.vibrateShort({
+        type: 'medium',
+      })
+      oldShopData.dianzanGif = true;
+    } else {
+      oldShopData.dianzanGif = false;
+    }
     this.setData({
       shopData: oldShopData
     })
@@ -304,12 +312,15 @@ Page({
     // 获取初始data
     let shopID = options.shopID;
     let openID = appInstance.globalData.openID;
-    let shopData = await request('/showpic/shop', {
+    let {
+      data: shopData
+    } = await request('/showpic/shop', {
       shopID,
       openID
     })
+    shopData.dianzanGif = false;
     this.setData({
-      shopData: shopData.data
+      shopData
     })
   },
   /**

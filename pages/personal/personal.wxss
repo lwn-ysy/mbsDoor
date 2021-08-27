@@ -61,7 +61,7 @@ page {
 /* 2. 收藏 */
 .collect {
   background-color: #fff;
-  height: 480rpx;
+  height: 330.6rpx;
   margin: 20rpx;
   padding: 20rpx;
   border-radius: 20rpx;
@@ -87,7 +87,7 @@ page {
 .collectWrapper {
   display: flex;
   flex-wrap: nowrap;
-  height: 390rpx;
+  height: 240.6rpx;
   margin: 20rpx 0;
 }
 
@@ -95,7 +95,7 @@ page {
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 390rpx;
+  height: 240.6rpx;
   margin-right: 40rpx;
   background-color: #f7f7f7;
   border-radius: 20rpx;
@@ -110,7 +110,8 @@ page {
 .collectWrapper .collect-item image {
   width: 240rpx;
   height: 320rpx;
-  border-radius: 20rpx;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
 }
 
 .collect-item .bottom {

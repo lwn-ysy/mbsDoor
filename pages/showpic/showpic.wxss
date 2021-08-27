@@ -52,8 +52,35 @@ page {
 }
 
 .dianzanWrapper {
+  position: relative;
   margin-right: 40rpx;
 }
+
+.dianzanWrapper .dianzan-gif{
+  position: absolute;
+  width: 100rpx;
+  height: 100rpx;
+  left: 0;
+}
+
+/* 点赞gif动画 */
+.fade-out-top {
+  animation: fade-out-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+/* 点赞的动画 */
+@keyframes fade-out-top {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-200rpx);
+    opacity: 0;
+  }
+}
+
 
 .dianzanWrapper .count {
   font-size: 22rpx;

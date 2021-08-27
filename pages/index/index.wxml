@@ -37,7 +37,7 @@
             <text class="iconfont icon-dianzan {{item.isDianzan ? 'dianzan' : '' }}" bindtap="switchDianzan"
               data-index="{{index}}"></text>
             <!-- 3.3.2.1 点赞gif -->
-            <image src="/static/image/dianzan.gif" class="dianzan-gif fade-out-top" wx:if="{{item.dianzanGif}}">
+            <image src="/static/image/dianzan1.png" class="dianzan-gif fade-out-top" wx:if="{{item.dianzanGif}}">
             </image>
             <text class="count">{{item.dianzan}}</text>
             <text class="iconfont icon-shoucang {{item.isCollected ? 'collected' : '' }}" bindtap="switchCollect"

@@ -10,7 +10,7 @@
 
 .banner {
   width: 100%;
-  height: 273rpx;
+  height: 319.56rpx;
 }
 
 .banner image {
@@ -92,7 +92,7 @@
 .shop .shopItem .half {
   width: 345rpx;
   /* 高度可以计算 */
-  height: 504rpx;
+  height: 245.24rpx;
 }
 
 .shop .shopItem .full {
@@ -187,18 +187,13 @@
 
 /* gif动画 */
 .fade-out-top {
-  animation: fade-out-top 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: fade-out-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
 /* 点赞的动画 */
 @keyframes fade-out-top {
   0% {
     transform: translateY(0);
-    opacity: 1;
-  }
-
-  99% {
-    transform: translateY(-200rpx);
     opacity: 1;
   }
 
