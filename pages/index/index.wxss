@@ -29,14 +29,16 @@
 
 .category {
   display: flex;
-  height: 100rpx;
-  flex-wrap: nowrap;
+  height: 80rpx;
+  /* flex-wrap: nowrap; */
+  white-space: nowrap;
   margin-top: 20rpx;
 }
 
 .category .categoryItem {
   height: 60rpx;
   line-height: 60rpx;
+  padding: 0 20rpx;
   margin: 0 20rpx;
   font-size: 24rpx;
   border-radius: 20rpx;
@@ -44,10 +46,10 @@
   background-color: #f7f7f7;
 }
 
-.category .categoryItem text {
+/* .category .categoryItem text {
   display: inline-block;
   width: 120rpx;
-}
+} */
 
 .category .selected {
   color: #d43d33;
