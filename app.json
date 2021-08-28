@@ -3,8 +3,8 @@
     "pages/index/index",
     "pages/showpic/showpic",
     "pages/personal/personal",
-    "pages/show/show"
-
+    "pages/show/show",
+    "pages/branddes/branddes"
 
   ],
   "usingComponents": {
@@ -16,13 +16,13 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "门博士",
     "navigationBarTextStyle": "black"
-
   },
   "tabBar": {
     "color": "#333",
     "selectedColor": "#d43c33",
     "backgroundColor": "#fff",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/index/index",
         "text": "主页",
         "iconPath": "/static/image/tabs/homepage.png",
@@ -33,7 +33,8 @@
         "text": "实地实拍",
         "iconPath": "/static/image/tabs/show.png",
         "selectedIconPath": "/static/image/tabs/show-selected.png"
-      }, {
+      },
+      {
         "pagePath": "pages/personal/personal",
         "text": "个人中心",
         "iconPath": "/static/image/tabs/personal.png",

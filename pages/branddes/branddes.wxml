@@ -1,0 +1,7 @@
+<!--pages/branddes/branddes.wxml-->
+<view class="container">
+<image src="https://mbsdoor.com:5000/static/image/branddes/logo.png" class="logo" mode="widthFix" ></image>
+<image src="https://mbsdoor.com:5000/static/image/branddes/branddes.jpg" class="brand-des" mode="widthFix"></image>
+<image src="https://mbsdoor.com:5000/static/image/branddes/chinastyle.jpg" mode="widthFix"></image>
+<image src="https://mbsdoor.com:5000/static/image/branddes/europe.jpg" mode="widthFix"></image>
+</view>

@@ -1,11 +1,13 @@
 <!--pages/showpic/showpic.wxml-->
 <view class="container">
+
   <!-- 1. 图片展示区域 -->
   <view class="picWrapper">
-    <swiper class="picSwiper">
+    <mp-loading type="circle" ext-class="showpicLoad" wx:if="{{isloading}}" tips="图片加载中"></mp-loading>
+    <swiper class="picSwiper" hidden="{{isloading}}">
       <swiper-item class="picItem" wx:for="{{shopData.urlList}}" wx:key="item" bindtap="handleTap" data-url="{{item}}"
         data-index="{{index}}">
-        <image class="img" src="{{item}}" mode="aspectFit"></image>
+        <image class="img" src="{{item}}" mode="aspectFit" bindload="hideLoading" data-index="{{index}}"></image>
       </swiper-item>
     </swiper>
   </view>

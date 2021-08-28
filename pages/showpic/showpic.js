@@ -8,34 +8,6 @@ Page({
    */
   data: {
     shopData: {
-      "urlList": [
-        "https://mbsdoor.com:5000/static/image/showpic/shop100001-1.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/shop100001-2.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/shop100001-3.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/shop100001-4.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/shop100001-5.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/shop100001-6.jpg"
-      ],
-      "shopDetail": {
-        "shopID": "shop_100001",
-        "publishdate": "2021-08-20",
-        "color": " 红古铜色 ",
-        "material": "紫铜板",
-        "category": "欧式臻品",
-        "type": "四开门"
-      },
-      "isDianzan": true,
-      "dianzanCount": 1,
-      "isCollected": true,
-      "shopList": {
-        "shopID": "shop_100001",
-        "categoryID": 10001,
-        "picUrl": "https://mbsdoor.com:5000/static/image/shop/1.jpg",
-        "des": "中式臻品系列是设计师在追根溯源中逐渐恢复东方文化的自信，学会扬弃，在寻找中国传统文化的同时，吸纳了西方现代学的精髓创造了真正属于中国人的新中式生活",
-        "isFull": 0,
-        "tags": "热销,铜门",
-        "title": "DR-A004梅兰竹菊"
-      }
     },
     goZoom: {
       inAnimate: false,
@@ -58,7 +30,8 @@ Page({
     clientValue: { // 设备窗口值
       x: 0,
       y: 0
-    }
+    },
+    isloading:true, //控制加载组件
 
   },
   // 辅助性，计算平方根的距离
@@ -243,7 +216,6 @@ Page({
       return;
     }
   },
-
   // 点赞操作
   async switchDianzan(e) {
     let oldShopData = this.data.shopData;
@@ -323,11 +295,20 @@ Page({
       shopData
     })
   },
+  hideLoading(e){
+    let _index = e.currentTarget.dataset.index;
+    console.log(_index)
+    if (_index !== 0) {
+      return;
+    }
+    this.setData({
+      isloading:false
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**

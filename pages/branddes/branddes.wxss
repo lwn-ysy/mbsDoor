@@ -1,0 +1,9 @@
+/* pages/branddes/branddes.wxss */
+
+.container{
+  display: flex;
+  flex-direction: column;
+}
+.container image{
+  width: 750rpx;
+}

@@ -4,6 +4,61 @@
   width: 100%;
 }
 
+.indexPageContainer .author {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20rpx;
+  height: 0;
+  color: #706f6f;
+}
+/* 进入动画 */
+.scale-in-top {
+  animation: scale-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes scale-in-top {
+  0% {
+    height: 0;
+    transform-origin: 50% 100%;
+    opacity: 0;
+  }
+
+  100% {
+    height: 64rpx;
+    transform-origin: 50% 100%;
+    opacity: 1;
+  }
+}
+
+
+/* 退出动画 */
+.scale-out-top {
+  animation: scale-out-top 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+/**
+ * ----------------------------------------
+ * animation scale-out-top
+ * ----------------------------------------
+ */
+@keyframes scale-out-top {
+  0% {
+    height: 64rpx;
+    transform-origin: 50% 0%;
+    opacity: 1;
+  }
+
+  100% {
+    width: 0;
+    height: 0;
+    transform-origin: 50% 0%;
+    opacity: 0;
+  }
+}
+
+
 .bannerContainer {
   padding: 0 25rpx;
 }

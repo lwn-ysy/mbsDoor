@@ -12,7 +12,9 @@ Page({
     selectID: 10001, //当前选中的标签,number类型
     shopList: [], //图片区域数据
     bottomShow: false, // 上拉，加载提示的显示
-    showGif: []
+    showAuthor: false, //下拉，加载开发者信息
+    exitAnimate: false, //退出动画
+    entranceAnimate: false, //进入动画
   },
 
   // [1] 获取轮播图数据的函数
@@ -111,7 +113,7 @@ Page({
       wx.vibrateShort({ // 振动
         type: 'medium',
       });
-    }else{
+    } else {
       oldShopList[_index].dianzanGif = false;
     }
 
@@ -135,6 +137,12 @@ Page({
     let shopID = e.currentTarget.dataset.shopid;
     wx.navigateTo({
       url: `../showpic/showpic?shopID=${shopID}`,
+    })
+  },
+  // 跳转到品牌描述界面
+  goBranddes() {
+    wx.navigateTo({
+      url: '/pages/branddes/branddes',
     })
   },
   /**
@@ -191,7 +199,11 @@ Page({
     })
   },
 
-
+  // handleAnimateEnd(){
+  //   this.setData({
+  //     showAuthor:false
+  //   })
+  // },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -234,7 +246,20 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () {
+    console.log('用户触发下拉');
+    this.setData({
+      exitAnimate: false,
+      entranceAnimate: true
+    });
+    setTimeout(() => {
+      this.setData({
+        exitAnimate: true,
+        entranceAnimate: false
+      });
+      wx.stopPullDownRefresh();
+    }, 2000);
+  },
 
   /**
    * 页面上拉触底事件的处理函数

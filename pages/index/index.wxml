@@ -1,10 +1,15 @@
 <!--pages/index/index.wxml-->
 <view class="indexPageContainer">
+  <!-- 界面下拉，显示开发者信息 -->
+  <view class="author {{exitAnimate ?'scale-out-top' : ''}} {{entranceAnimate ? 'scale-in-top' : ''}}">
+    <view>design by lwn</view>
+    <view>图片资源来源网络，只用于学习</view>
+  </view>
   <!-- 1. 轮播图 -->
   <view class="bannerContainer">
     <swiper class="banner" indicator-dots autoplay indicator-color='#fff' indicator-active-color='#f43f33'>
       <swiper-item class="bannerItem" wx:for="{{bannerList}}" wx:key="bannerID">
-        <image src="{{item.picURL}}"></image>
+        <image src="{{item.picURL}}" bindtap="goBranddes"></image>
       </swiper-item>
     </swiper>
   </view>

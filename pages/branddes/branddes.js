@@ -1,4 +1,4 @@
-// pages/collection/collection.js
+// pages/branddes/branddes.js
 Page({
 
   /**
