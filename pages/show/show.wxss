@@ -1,1 +1,138 @@
 /* pages/show/show.wxss */
+page {
+  background-color: #ededed;
+}
+
+.container {
+  position: relative;
+}
+
+/* 2. 标签 */
+.tabwrapper {
+  margin: 20rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+}
+
+.tabwrapper .tab {
+  display: flex;
+  height: 140rpx;
+  /* flex-wrap: nowrap; */
+  white-space: nowrap;
+}
+
+.tab .tab-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab .tab-item text {
+  height: 40rpx;
+  line-height: 40rpx;
+  padding: 0 20rpx;
+  margin-top: 20rpx;
+  margin-right: 20rpx;
+  font-size: 20rpx;
+  border-radius: 20rpx;
+  text-align: center;
+  background-color: #409eff;
+  color: #fff;
+}
+
+.tab .tab-item text:hover {
+  background-color: #8cc5ff;
+}
+
+/* 3.内容 */
+.contentWapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.contentWapper .item {
+  margin: 20rpx;
+  padding-bottom: 20rpx;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1rpx solid #fff;
+}
+
+.contentWapper .avater {
+  margin-right: 20rpx;
+}
+
+.contentWapper .avater image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 20rpx;
+}
+
+.rt .nickname {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.rt .content {
+  margin: 10rpx 0;
+  font-size: 26rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  /*设置对其模式*/
+  -webkit-line-clamp: 4;
+  /*设置多行的行数*/
+}
+
+.rt .address {
+  font-size: 20rpx;
+  color: #409eff;
+}
+
+.rt .time {
+  font-size: 20rpx;
+}
+
+.rt .pic-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.rt .pic-wrapper image {
+  width: 150rpx;
+  height: 150rpx;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+/* 3.1 图片的cover */
+/* .image-wrapper{
+  position: relative;
+} */
+.pic-wrapper .image-wrapper .cover {
+  position: absolute;
+  opacity: 0;
+  transform: translate(-170rpx);
+}
+
+.scale-in-center {
+  animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes scale-in-center {
+  /* 0% {
+    transform: translate(0);
+    transform-origin: 50% 50%;
+    opacity: 0;
+  } */
+
+  100%{
+    transform: translate(-330rpx,-390rpx);
+    width: 750rpx;
+    height: 1110rpx;
+    transform-origin: 50% 50%;
+    opacity: 1;
+    z-index: 99;
+  }
+}

@@ -1,2 +1,119 @@
-<!--pages/show/show.wxml-->
-<text>pages/show/show.wxml</text>
+<view class="container">
+  <!-- 1 搜索框 -->
+  <view class="search">
+    <mp-searchbar bindselectresult="selectResult" search="{{search}}"></mp-searchbar>
+  </view>
+  <!-- 2 标签 -->
+  <view class="tabwrapper">
+    <scroll-view class="tab" enable-flex scroll-x>
+      <view wx:for="{{tab}}" wx:key="item" class="tab-item">
+        <text>{{item[0]}}</text>
+        <text>{{item[1]}}</text>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- 3 内容 -->
+  <view class="contentWapper">
+    <view class="item">
+      <view class="avater">
+        <image src="https://mbsdoor.com:5000/static/image/showpic/avater.jpg"></image>
+      </view>
+      <view class="rt">
+        <view class="nickname">门博士</view>
+        <view class="content">文字描述文字</view>
+        <!-- 3.1 图片 -->
+        <view class="pic-wrapper">
+          <view class="image-wrapper">
+            <image src="https://mbsdoor.com:5000/static/image/showpic/1.jpg" mode="aspectFill"></image>
+            <image src="https://mbsdoor.com:5000/static/image/showpic/1.jpg" mode="aspectFill" class="cover {{animate ? 'scale-in-center' : ''}}" ></image>
+          </view>
+          <view class="image-wrapper">
+            <image src="https://mbsdoor.com:5000/static/image/showpic/2.jpg" mode="aspectFill"></image>
+            <image src="https://mbsdoor.com:5000/static/image/showpic/2.jpg" mode="aspectFill" class="cover" ></image>
+          </view>
+          <view class="image-wrapper">
+            <image src="https://mbsdoor.com:5000/static/image/showpic/3.jpg" mode="aspectFill"></image>
+            <image src="https://mbsdoor.com:5000/static/image/showpic/3.jpg" mode="aspectFill" class="cover" ></image>
+          </view>
+          <view class="image-wrapper">
+            <image src="https://mbsdoor.com:5000/static/image/showpic/4.jpg" mode="aspectFill"></image>
+            <image src="https://mbsdoor.com:5000/static/image/showpic/4.jpg" mode="aspectFill" class="cover" ></image>
+          </view>
+          <view class="image-wrapper">
+            <image src="https://mbsdoor.com:5000/static/image/showpic/5.jpg" mode="aspectFill"></image>
+            <image src="https://mbsdoor.com:5000/static/image/showpic/5.jpg" mode="aspectFill" class="cover" ></image>
+          </view>
+          <view class="image-wrapper">
+            <image src="https://mbsdoor.com:5000/static/image/showpic/6.jpg" mode="aspectFill"></image>
+            <image src="https://mbsdoor.com:5000/static/image/showpic/6.jpg" mode="aspectFill" class="cover" ></image>
+          </view>
+          <view class="image-wrapper">
+            <image src="https://mbsdoor.com:5000/static/image/showpic/7.jpg" mode="aspectFill"></image>
+            <image src="https://mbsdoor.com:5000/static/image/showpic/7.jpg" mode="aspectFill" class="cover" ></image>
+          </view>
+          <view class="image-wrapper">
+            <image src="https://mbsdoor.com:5000/static/image/showpic/8.jpg" mode="aspectFill"></image>
+            <image src="https://mbsdoor.com:5000/static/image/showpic/8.jpg" mode="aspectFill" class="cover" ></image>
+          </view>
+          <view class="image-wrapper">
+            <image src="https://mbsdoor.com:5000/static/image/showpic/9.jpg" mode="aspectFill"></image>
+            <image src="https://mbsdoor.com:5000/static/image/showpic/9.jpg" mode="aspectFill" class="cover" ></image>
+          </view>
+        </view>
+        <view class="address">深圳市龙岗区锦城新苑</view>
+        <view class="time">2021-08-29</view>
+      </view>
+    </view>
+    <view class="item">
+      <view class="avater">
+        <image src="https://mbsdoor.com:5000/static/image/showpic/avater.jpg"></image>
+      </view>
+      <view class="rt">
+        <view class="nickname">门博士</view>
+        <view class="content">文字描述文字</view>
+        <!-- 3.1 图片 -->
+        <view class="pic-wrapper">
+          <view class="image-wrapper">
+            <image src="https://mbsdoor.com:5000/static/image/showpic/1.jpg" mode="aspectFill"></image>
+            <image src="https://mbsdoor.com:5000/static/image/showpic/1.jpg" mode="aspectFill" class="cover" ></image>
+          </view>
+          <view class="image-wrapper">
+            <image src="https://mbsdoor.com:5000/static/image/showpic/2.jpg" mode="aspectFill"></image>
+            <image src="https://mbsdoor.com:5000/static/image/showpic/2.jpg" mode="aspectFill" class="cover" ></image>
+          </view>
+          <view class="image-wrapper">
+            <image src="https://mbsdoor.com:5000/static/image/showpic/3.jpg" mode="aspectFill"></image>
+            <image src="https://mbsdoor.com:5000/static/image/showpic/3.jpg" mode="aspectFill" class="cover" ></image>
+          </view>
+          <view class="image-wrapper">
+            <image src="https://mbsdoor.com:5000/static/image/showpic/4.jpg" mode="aspectFill"></image>
+            <image src="https://mbsdoor.com:5000/static/image/showpic/4.jpg" mode="aspectFill" class="cover" ></image>
+          </view>
+          <view class="image-wrapper">
+            <image src="https://mbsdoor.com:5000/static/image/showpic/5.jpg" mode="aspectFill"></image>
+            <image src="https://mbsdoor.com:5000/static/image/showpic/5.jpg" mode="aspectFill" class="cover" ></image>
+          </view>
+          <view class="image-wrapper">
+            <image src="https://mbsdoor.com:5000/static/image/showpic/6.jpg" mode="aspectFill"></image>
+            <image src="https://mbsdoor.com:5000/static/image/showpic/6.jpg" mode="aspectFill" class="cover" ></image>
+          </view>
+          <view class="image-wrapper">
+            <image src="https://mbsdoor.com:5000/static/image/showpic/7.jpg" mode="aspectFill"></image>
+            <image src="https://mbsdoor.com:5000/static/image/showpic/7.jpg" mode="aspectFill" class="cover" ></image>
+          </view>
+          <view class="image-wrapper">
+            <image src="https://mbsdoor.com:5000/static/image/showpic/8.jpg" mode="aspectFill"></image>
+            <image src="https://mbsdoor.com:5000/static/image/showpic/8.jpg" mode="aspectFill" class="cover" ></image>
+          </view>
+          <view class="image-wrapper">
+            <image src="https://mbsdoor.com:5000/static/image/showpic/9.jpg" mode="aspectFill"></image>
+            <image src="https://mbsdoor.com:5000/static/image/showpic/9.jpg" mode="aspectFill" class="cover" ></image>
+          </view>
+        </view>
+        <view class="address">深圳市龙岗区锦城新苑</view>
+        <view class="time">2021-08-29</view>
+      </view>
+    </view>
+  </view>
+
+</view>
