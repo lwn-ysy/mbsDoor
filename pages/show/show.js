@@ -7,6 +7,8 @@ Page({
   data: {
     tab:[['深圳南山','中山'],['东莞凤岗','梅州兴宁'],['香港','深圳龙岗'],['深圳坪山','梅州五华'],['河源','惠州仲恺'],['河源','惠州仲恺'],['河源','惠州仲恺']],
     animate:false,
+    offset:[0,0],//图片偏移
+    isShow:false
   },
   search: function (value) {
     return new Promise((resolve, reject) => {
@@ -24,6 +26,18 @@ Page({
   // 点击搜索内的值
   selectResult(e) {
     console.log(e);
+  },
+  test(e){
+    console.log(e)
+  },
+  goFullScreen(e){
+    console.log(e)
+    let x = e.currentTarget.offsetLeft;
+    let y = e.currentTarget.offsetTop;
+    this.setData({
+      offset:[x,y],
+      isShow:true
+    })
   },
   /**
    * 生命周期函数--监听页面加载

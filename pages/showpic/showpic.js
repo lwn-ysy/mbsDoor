@@ -7,17 +7,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    shopData: {
-    },
-    goZoom: {
+    shopData: {},
+    goZoom: {// 控制动画
       inAnimate: false,
       outAnimate: false
     }, //
     _hidden: true,
     currentIndex: 0, //指定轮播图的播放的图片index
     currentPicUrl: '', //全屏时，图片地址
-    distance: 0, //缩放功能，手指移动的距离
+    distance: 7, //缩放功能，手指移动总共距离,初始值为 => Math.pow(logNumber,scale)
+    lastDistance: 0, //缩放功能，上次的两手指距离
     scale: 1, //缩放功能，缩放比例
+    logNumber: 7, //缩放功能，固定常量，缩放log曲线的底数log20
     timeStamp: '', //tap功能，触摸的时间轴,用来确认是tap事件，区分touch
     transitionPos: { //移动功能, 实际要移动的距离
       x: 0,
@@ -31,7 +32,7 @@ Page({
       x: 0,
       y: 0
     },
-    isloading:true, //控制加载组件
+    isloading: true, //控制加载组件
 
   },
   // 辅助性，计算平方根的距离
@@ -61,19 +62,18 @@ Page({
     }
     // 缩放功能
     // console.log('start-->缩放功能');
-    let distance = this.calcDistance(e.touches[0], e.touches[1]);
     this.setData({
-      distance
+      lastDistance: this.calcDistance(e.touches[0], e.touches[1])
     })
   },
   // 触摸过程
   touchmoveCallback(e) {
+    // 1. 单手指触摸移动功能
     if (e.touches.length === 1) {
       let scale = this.data.scale;
       if (scale <= 1) {
         return;
       }
-      // console.log('move进入单手触摸')
       let clientValue = this.data.clientValue;
       let transitionPos = this.data.transitionPos;
       let startPos = this.data.startPos;
@@ -111,25 +111,33 @@ Page({
       })
       return;
     }
-    // 缩放功能
+    // 2. 缩放功能
+    let x = this.data.logNumber; // log函数的底数
     let moveDistance = this.calcDistance(e.touches[0], e.touches[1]);
-    let diffDistance = moveDistance - this.data.distance;
-    let newScale = this.data.scale + 0.005 * diffDistance; // 0.005可以调节
-    if (newScale > 4) {
-      newScale = 4; // 最大放大倍速
-    }
-    if (newScale < 0.25) {
-      newScale = 0.25; // 最小缩放倍数
+    let diffDistance = moveDistance - this.data.lastDistance;
+    let distance = this.data.distance;
+    distance += diffDistance;
+
+    console.log('移动总距离：',distance);
+    // let newScale = this.data.scale + 0.005 * diffDistance; // 老版本线性曲线
+    let scale = 0;
+    if (distance >= x) {
+      scale = Math.log(distance) / Math.log(x); // 新版本曲线，对数
+    } else if (-x < distance && distance < x) {
+      scale = 1;
+    } else {
+      scale = 1 / (Math.log(Math.abs(distance)) / Math.log(x));
     }
     this.setData({
-      scale: newScale,
-      distance: moveDistance
+      scale,
+      distance,
+      lastDistance: moveDistance
     })
   },
   // 触摸结束
   touchendCallback(e) {
     if (e.touches.length > 1) {
-      return;
+      return; // 还有大于两只手指在屏幕上
     }
 
     if (e.touches.length === 1) {
@@ -142,20 +150,38 @@ Page({
       });
     }
 
-
-    let scale = this.data.scale;
-    // console.log('end-->缩小回弹为1')
-    // console.log('end-->length:', e.touches.length)
-    // 缩小回弹
-    if (scale < 1) {
+    //触摸接受后，做一些数据重置操作
+    let {
+      scale,
+      logNumber
+    } = this.data;
+    // 缩放回弹
+    if (scale > 3.2) {
+      scale = 3.2; // 最大放大倍速
       this.setData({
-        scale: 1,
+        // 缩放功能的数据重置
+        scale,
+        // 有问题，如果distance介于-20< x <20,之间，是不需要重置的
+        distance: Math.pow(logNumber, scale),
+      })
+    }
+    if (scale < 1) {
+      scale = 1; // 最小缩放倍数
+      this.setData({
+        // 缩放功能的数据重置
+        scale,
+        // 有问题，如果distance介于-20< x <20,之间，是不需要重置的
+        distance: Math.pow(logNumber, scale),
+        //单指滑动的数据重置
         transitionPos: {
           x: 0,
           y: 0
         }
       })
     }
+
+
+
   },
   switchHalfScreen(e) {
     let timeStamp = this.data.timeStamp;
@@ -172,7 +198,7 @@ Page({
     this.setData({
       goZoom,
       scale: 1,
-      // currentIndex: this.data.currentIndex,
+      distance: Math.pow(this.data.logNumber, 1),
       transitionPos: {
         x: 0,
         y: 0
@@ -257,7 +283,6 @@ Page({
       shopData: oldShopData,
     })
     // 向服务端发送请求,更改数据库的collect表数据
-    console.log('请求服务端的data数据：', openID, shopID);
     request('/personal/collect', {
       openID,
       shopID
@@ -295,21 +320,19 @@ Page({
       shopData
     })
   },
-  hideLoading(e){
+  hideLoading(e) {
     let _index = e.currentTarget.dataset.index;
-    console.log(_index)
     if (_index !== 0) {
       return;
     }
     this.setData({
-      isloading:false
+      isloading: false
     })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  },
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示

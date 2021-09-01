@@ -1,10 +1,14 @@
 /* pages/show/show.wxss */
 page {
   background-color: #ededed;
+  width: 100%;
+  height: 100%;
 }
 
 .container {
   position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 /* 2. 标签 */
@@ -112,8 +116,8 @@ page {
 } */
 .pic-wrapper .image-wrapper .cover {
   position: absolute;
-  opacity: 0;
-  transform: translate(-170rpx);
+  /* opacity: 0; */
+  /* transform: translate(-170rpx); */
 }
 
 .scale-in-center {
@@ -135,4 +139,18 @@ page {
     opacity: 1;
     z-index: 99;
   }
+}
+/* 4全屏图片 */
+.full-screen{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #010101;
+  z-index: 99;
+}
+.full-screen image{
+  width: 100%;
+  height: 100%;
 }
