@@ -1,3 +1,6 @@
 # mbsDoor
-show picture use mbsDoor ship in wx
-1. 微信小程序
+###### 一、这是微信小程序项目，对应mbsdoorServer项目是自己写的服务端，挂在腾讯云服务器中。
+
+1. 功能比较少，但已有的功能都是比较完善的
+2. 
+

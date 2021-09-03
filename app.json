@@ -5,7 +5,7 @@
     "pages/showpic/showpic",
     "pages/personal/personal",
     "pages/branddes/branddes"
-
+    
   ],
   "usingComponents": {
     "mp-loading": "weui-miniprogram/loading/loading",
@@ -22,7 +22,8 @@
     "color": "#333",
     "selectedColor": "#d43c33",
     "backgroundColor": "#fff",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/index/index",
         "text": "主页",
         "iconPath": "/static/image/tabs/homepage.png",

@@ -1,0 +1,18 @@
+.wrapper{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 99;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}
+.wrapper .img{
+  /* width: 100%; */
+  position: absolute;
+  transition-property: width , height ,top ,left;
+  transition-duration: .3s;
+  transition-timing-function: linear;
+}

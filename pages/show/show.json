@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "component-galary":"/components/galary/galary"
+  },
   "navigationBarTitleText": "施工blog"
 }

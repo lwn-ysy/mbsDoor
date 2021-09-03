@@ -179,9 +179,6 @@ Page({
         }
       })
     }
-
-
-
   },
   switchHalfScreen(e) {
     let timeStamp = this.data.timeStamp;

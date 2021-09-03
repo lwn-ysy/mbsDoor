@@ -1,0 +1,26 @@
+<!-- 
+  图片浏览的组件
+  designBy:lwn
+  updateTime:2021-09-01
+   -->
+<!-- 
+     使用说明：
+     1.组件外面的父元素长宽应为100%，继承；
+
+    -->
+<view class="wrapper" wx:if="{{isShow}}">
+<!-- TODO:坑，如果touchstart是catch形式，不会触发后续的tap事件 -->
+  <image 
+  class="img" 
+  src="{{picUrl}}" 
+  bindload="imgLoad" 
+  mode="aspectFit"
+  style="transform:scale({{scale}}) translate({{transitionPos.x}}rpx,{{transitionPos.y}}rpx);width:{{initSize.width}}rpx;height:{{initSize.height}}rpx;top: {{initSize.top}}px;left: {{initSize.left}}px;"
+  catchtap="backToOuter"
+  bindtouchstart="touchstartCallback"  
+  catchtouchmove="touchmoveCallback" 
+  catchtouchend="touchendCallback" 
+  bindtransitionend="transitionendCallback"
+  >
+  </image>
+</view>
