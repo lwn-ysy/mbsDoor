@@ -2,5 +2,7 @@
   "usingComponents": {
     "component-galary":"/components/galary/galary"
   },
-  "navigationBarTitleText": "施工blog"
+  "navigationBarTitleText": "施工blog",
+  "backgroundColorTop":"#ededed",
+  "backgroundColorBottom":"#ededed"
 }

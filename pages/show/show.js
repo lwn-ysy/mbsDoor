@@ -14,16 +14,42 @@ Page({
       ['河源', '惠州仲恺'],
       ['河源', '惠州仲恺']
     ],
-    animate: false,
-    isShow: false, //图片浏览组件-->控制显影
-    picUrl: '', //图片浏览组件-->图片地址
-    initSize: {
-      width: 150,
-      height: 150,
-      top: 0,
-      left: 0
-    }, //图片浏览组件-->图片元素显示的大小，单位rpx
-    pageScrollTop: 0, //页面在垂直方向已滚动的距离（单位px）
+    lists: [{
+      id: "001",
+      avater: "https://mbsdoor.com:5000/static/image/showpic/avater.jpg",
+      nickname: "门博士",
+      content: "文字描述",
+      address: "深圳市龙岗区锦城新苑",
+      time: "2021-08-29",
+      imgUrls: [
+        "https://mbsdoor.com:5000/static/image/showpic/1.jpg",
+        "https://mbsdoor.com:5000/static/image/showpic/2.jpg",
+        "https://mbsdoor.com:5000/static/image/showpic/3.jpg",
+        "https://mbsdoor.com:5000/static/image/showpic/4.jpg",
+        "https://mbsdoor.com:5000/static/image/showpic/5.jpg",
+        "https://mbsdoor.com:5000/static/image/showpic/6.jpg",
+        "https://mbsdoor.com:5000/static/image/showpic/7.jpg",
+        "https://mbsdoor.com:5000/static/image/showpic/8.jpg",
+        "https://mbsdoor.com:5000/static/image/showpic/9.jpg",
+      ]
+    }, {
+      avater: "https://mbsdoor.com:5000/static/image/showpic/avater.jpg",
+      nickname: "门博士",
+      content: "文字描述",
+      address: "深圳市龙岗区锦城新苑",
+      time: "2021-08-29",
+      imgUrls: [
+        "https://mbsdoor.com:5000/static/image/showpic/1.jpg",
+        "https://mbsdoor.com:5000/static/image/showpic/2.jpg",
+        "https://mbsdoor.com:5000/static/image/showpic/3.jpg",
+        "https://mbsdoor.com:5000/static/image/showpic/4.jpg",
+        "https://mbsdoor.com:5000/static/image/showpic/5.jpg",
+        "https://mbsdoor.com:5000/static/image/showpic/6.jpg",
+        "https://mbsdoor.com:5000/static/image/showpic/7.jpg",
+        "https://mbsdoor.com:5000/static/image/showpic/8.jpg",
+        "https://mbsdoor.com:5000/static/image/showpic/9.jpg",
+      ]
+    }]
 
   },
   search: function (value) {
@@ -46,21 +72,16 @@ Page({
   getClientPos(e) {
     console.log("触摸开始", e)
   },
-  goFullScreen(e) {
-    console.log(e);
-
-    let initSize = {
-      left: e.currentTarget.offsetLeft,
-      top: e.currentTarget.offsetTop - this.data.pageScrollTop,
-      width: 150,
-      height: 150
-    };
-    this.setData({
-      initSize,
-      isShow: true,
-      picUrl: e.currentTarget.dataset.pictureurl
+  goPreviewImage(e) {
+    if (!e.target.id) {
+      return;
+    }
+    wx.previewImage({
+      current: e.currentTarget.dataset.imgurls[e.target.id],
+      urls: e.currentTarget.dataset.imgurls,
     })
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -70,12 +91,7 @@ Page({
       search: this.search.bind(this)
     })
   },
-  onPageScroll(e) {
-    console.log(e)
-    this.setData({
-      pageScrollTop: e.scrollTop //TODO:极其损耗内存，不建议这样做
-    })
-  },
+  onPageScroll() {},
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

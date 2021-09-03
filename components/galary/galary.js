@@ -40,7 +40,8 @@ Component({
       x: 0,
       y: 0
     },
-    bgc: '' //背景色
+    backupSize: {}, //初始数据initSize的备份
+    leaveTransitonend: false, //技术不行，只能变量区分过渡动态进、离开
   },
 
   /**
@@ -48,6 +49,7 @@ Component({
    */
   methods: {
     imgLoad(e) {
+      this.data.backupSize = this.data.initSize;
       setTimeout(() => {
         this.setData({
           // imgHeight: (750 / e.detail.width) * e.detail.height
@@ -207,7 +209,6 @@ Component({
       }
     },
     backToOuter(e) {
-      console.log('点击了图片');
       let timeStamp = this.data.timeStamp;
       let newTimeStamp = e.timeStamp;
       // 有move过程大于200ms时不触发tap
@@ -227,15 +228,10 @@ Component({
           x: 0,
           y: 0
         },
-        isShow: false,
-        bgc: ""
+        initSize: this.data.backupSize,
       })
     },
-    transitionendCallback() {
-      this.setData({
-        bgc: "#010101"
-      })
-    }
+ 
   },
   pageLifetimes: {
     show() {

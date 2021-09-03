@@ -14,64 +14,23 @@
   </view>
   <!-- 3 内容 -->
   <view class="contentWapper">
-    <view class="item">
+    <view class="item" wx:for="{{lists}}" wx:key="id">
       <view class="avater" bindtap="test">
-        <image src="https://mbsdoor.com:5000/static/image/showpic/avater.jpg"></image>
+        <image src="{{item.avater}}"></image>
       </view>
       <view class="rt">
-        <view class="nickname">门博士</view>
-        <view class="content">文字描述文字</view>
+        <view class="nickname">{{item.nickname}}</view>
+        <view class="content">{{item.content}}</view>
         <!-- 3.1 图片 -->
         <view class="pic-wrapper">
-          <view class="image-wrapper">
-            <image src="https://mbsdoor.com:5000/static/image/showpic/1.jpg" mode="aspectFill" data-pictureurl="https://mbsdoor.com:5000/static/image/showpic/1.jpg" bindtap="goFullScreen" >
-            </image>
-            <image src="https://mbsdoor.com:5000/static/image/showpic/2.jpg" mode="aspectFill" data-pictureurl="https://mbsdoor.com:5000/static/image/showpic/2.jpg" bindtap="goFullScreen">
-            </image>
-            <image src="https://mbsdoor.com:5000/static/image/showpic/3.jpg" mode="aspectFill" data-pictureurl="https://mbsdoor.com:5000/static/image/showpic/3.jpg" bindtap="goFullScreen">
-            </image>
-            <image src="https://mbsdoor.com:5000/static/image/showpic/4.jpg" mode="aspectFill" data-pictureurl="https://mbsdoor.com:5000/static/image/showpic/4.jpg" bindtap="goFullScreen">
+          <view class="image-wrapper" bindtap="goPreviewImage" data-imgurls="{{item.imgUrls}}">
+            <image wx:for="{{item.imgUrls}}" wx:key="index" src="{{item}}" id="{{index}}" mode="aspectFill">
             </image>
           </view>
         </view>
-        <view class="address">深圳市龙岗区锦城新苑</view>
-        <view class="time">2021-08-29</view>
-      </view>
-    </view>
-    <view class="item">
-      <view class="avater" bindtap="test">
-        <image src="https://mbsdoor.com:5000/static/image/showpic/avater.jpg"></image>
-      </view>
-      <view class="rt">
-        <view class="nickname">门博士</view>
-        <view class="content">文字描述文字</view>
-        <!-- 3.1 图片 -->
-        <view class="pic-wrapper">
-          <view class="image-wrapper">
-            <image src="https://mbsdoor.com:5000/static/image/showpic/1.jpg" mode="aspectFill" data-pictureurl="https://mbsdoor.com:5000/static/image/showpic/1.jpg" bindtap="goFullScreen">
-            </image>
-            <image src="https://mbsdoor.com:5000/static/image/showpic/2.jpg" mode="aspectFill" data-pictureurl="https://mbsdoor.com:5000/static/image/showpic/2.jpg" bindtap="goFullScreen">
-            </image>
-            <image src="https://mbsdoor.com:5000/static/image/showpic/3.jpg" mode="aspectFill" data-pictureurl="https://mbsdoor.com:5000/static/image/showpic/3.jpg" bindtap="goFullScreen">
-            </image>
-            <image src="https://mbsdoor.com:5000/static/image/showpic/4.jpg" mode="aspectFill" data-pictureurl="https://mbsdoor.com:5000/static/image/showpic/4.jpg" bindtap="goFullScreen">
-            </image>
-          </view>
-        </view>
-        <view class="address">深圳市龙岗区锦城新苑</view>
-        <view class="time">2021-08-29</view>
+        <view class="address">{{item.address}}</view>
+        <view class="time">{{item.time}}</view>
       </view>
     </view>
   </view>
-  <!-- 4.全屏图片 -->
-  <!-- <view class="full-screen" wx:if="{{isShow}}">
-    <image src="https://mbsdoor.com:5000/static/image/showpic/1.jpg" mode="aspectFit" class="cover"
-      style="transition: all 2s linear;"></image>
-  </view> -->
-
-  <component-galary 
-  pic-url="{{picUrl}}" 
-  is-show="{{isShow}}" 
-  init-size="{{initSize}}"
-  ></component-galary>
 </view>
