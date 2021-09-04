@@ -61,7 +61,7 @@ page {
 /* 2. 收藏 */
 .collect {
   background-color: #f7f7f7;
-  height: 330.6rpx;
+  /* height: 330.6rpx; */
   margin: 20rpx;
   padding: 20rpx;
   border-radius: 20rpx;
@@ -75,11 +75,13 @@ page {
   padding-bottom: 20rpx;
   border-bottom: 1rpx solid #fff;
 }
-.collect .header .title{
+
+.collect .header .title {
   font-size: 30rpx;
   font-weight: bolder;
 }
-.collect .header .btn button{
+
+.collect .header .btn button {
   font-size: 20rpx;
   margin-left: 20rpx;
 }
@@ -89,6 +91,33 @@ page {
   flex-wrap: nowrap;
   height: 240.6rpx;
   margin: 20rpx 0;
+}
+
+.nofund-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.nofund-wrapper .tips{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.nofund-wrapper .bigsize{
+  font-size: 28rpx;
+  color: rgb(99, 97, 97);
+
+}
+.nofund-wrapper .smallsize{
+  font-size: 20rpx;
+  color: rgb(99, 97, 97);
+
+}
+.nofund-wrapper .nofound-img {
+  width: 250rpx;
+  height: 250rpx;
 }
 
 .collectWrapper .collect-item {

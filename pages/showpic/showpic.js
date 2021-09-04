@@ -8,17 +8,14 @@ Page({
    */
   data: {
     shopData: {},
-    goZoom: {// 控制动画
+    goZoom: { // 控制动画
       inAnimate: false,
       outAnimate: false
     }, //
     _hidden: true,
-    currentIndex: 0, //指定轮播图的播放的图片index
     currentPicUrl: '', //全屏时，图片地址
-    distance: 7, //缩放功能，手指移动总共距离,初始值为 => Math.pow(logNumber,scale)
     lastDistance: 0, //缩放功能，上次的两手指距离
     scale: 1, //缩放功能，缩放比例
-    logNumber: 7, //缩放功能，固定常量，缩放log曲线的底数log20
     timeStamp: '', //tap功能，触摸的时间轴,用来确认是tap事件，区分touch
     transitionPos: { //移动功能, 实际要移动的距离
       x: 0,
@@ -44,24 +41,20 @@ Page({
   // 图片的像素最好在500px以上
   // 手指开始触摸时
   touchstartCallback(e) {
-    let timeStamp = e.timeStamp; // 辅助工具，辨别真的的tap事件，而不是touch触摸接受后导致的tap
     this.setData({
-      timeStamp
+      timeStamp: e.timeStamp // 辅助工具，辨别真的的tap事件，而不是touch触摸接受后导致的tap
     })
     if (e.touches.length === 1) {
       // console.log('start-->单手指，移动功能')
-      let x = e.touches[0].clientX;
-      let y = e.touches[0].clientY;
       this.setData({
         startPos: {
-          x,
-          y
+          x: e.touches[0].clientX,
+          y: e.touches[0].clientY
         }
       })
       return;
     }
     // 缩放功能
-    // console.log('start-->缩放功能');
     this.setData({
       lastDistance: this.calcDistance(e.touches[0], e.touches[1])
     })
@@ -71,20 +64,24 @@ Page({
     // 1. 单手指触摸移动功能
     if (e.touches.length === 1) {
       let scale = this.data.scale;
-      if (scale <= 1) {
+      if (scale <= 1) { //没放大，不移动
         return;
       }
-      let clientValue = this.data.clientValue;
-      let transitionPos = this.data.transitionPos;
-      let startPos = this.data.startPos;
+      let {
+        clientValue,
+        transitionPos,
+        startPos
+      } = this.data
       let distanceX = e.touches[0].clientX - startPos.x;
       let distanceY = e.touches[0].clientY - startPos.y;
       let x = transitionPos.x + distanceX;
       let y = transitionPos.y + distanceY;
       // TODO: 有待研究，计算临界值,
-      let limitX = (scale - 1) * clientValue.x / scale;
+      // let limitX = clientValue.x / scale;
+      let limitX = (scale - 1) * clientValue.x / 2 / scale ;
+      console.log("临界值", limitX)
       // console.log('临界值x：', limitX)
-      let limitY = (scale - 1) * clientValue.y / scale;
+      let limitY = (scale - 1) * clientValue.y / scale / 2;
       // console.log('临界值y：', limitY)
 
       if (x > limitX) {
@@ -112,27 +109,22 @@ Page({
       return;
     }
     // 2. 缩放功能
-    let x = this.data.logNumber; // log函数的底数
-    let moveDistance = this.calcDistance(e.touches[0], e.touches[1]);
-    let diffDistance = moveDistance - this.data.lastDistance;
-    let distance = this.data.distance;
-    distance += diffDistance;
-
-    console.log('移动总距离：',distance);
-    // let newScale = this.data.scale + 0.005 * diffDistance; // 老版本线性曲线
-    let scale = 0;
-    if (distance >= x) {
-      scale = Math.log(distance) / Math.log(x); // 新版本曲线，对数
-    } else if (-x < distance && distance < x) {
-      scale = 1;
+    let scale = this.data.scale;
+    let nowDistance = this.calcDistance(e.touches[0], e.touches[1])
+    let diffDistance = nowDistance - this.data.lastDistance;
+    if (scale > 3) {
+      scale += 0.001 * diffDistance
+    } else if (scale < 0.5) {
+      scale += 0.0005 * diffDistance
     } else {
-      scale = 1 / (Math.log(Math.abs(distance)) / Math.log(x));
+      scale += 0.005 * diffDistance; // 老版本线性曲线
     }
+
     this.setData({
       scale,
-      distance,
-      lastDistance: moveDistance
+      lastDistance: nowDistance
     })
+    console.log("缩放结束后缩放倍数：", this.data.scale)
   },
   // 触摸结束
   touchendCallback(e) {
@@ -153,16 +145,13 @@ Page({
     //触摸接受后，做一些数据重置操作
     let {
       scale,
-      logNumber
     } = this.data;
     // 缩放回弹
-    if (scale > 3.2) {
-      scale = 3.2; // 最大放大倍速
+    if (scale > 3) {
+      scale = 3; // 最大放大倍速
       this.setData({
         // 缩放功能的数据重置
         scale,
-        // 有问题，如果distance介于-20< x <20,之间，是不需要重置的
-        distance: Math.pow(logNumber, scale),
       })
     }
     if (scale < 1) {
@@ -170,8 +159,6 @@ Page({
       this.setData({
         // 缩放功能的数据重置
         scale,
-        // 有问题，如果distance介于-20< x <20,之间，是不需要重置的
-        distance: Math.pow(logNumber, scale),
         //单指滑动的数据重置
         transitionPos: {
           x: 0,
@@ -195,7 +182,6 @@ Page({
     this.setData({
       goZoom,
       scale: 1,
-      distance: Math.pow(this.data.logNumber, 1),
       transitionPos: {
         x: 0,
         y: 0

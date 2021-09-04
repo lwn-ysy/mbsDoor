@@ -34,21 +34,37 @@
     </view>
 
     <scroll-view class="collectWrapper" enable-flex scroll-x>
-      <view class="collect-item" wx:for="{{collectList}}" wx:key="shopID">
-        <!-- 2.1 图片右上角删除图标 -->
-        <view class="deleteIconWrapper">
-          <view class="deleteIconOut" wx:if="{{showDeleteIcon}}">
-            <text class=" iconfont icon-guanbi" bindtap="showDeleteOneDialog" data-shopid="{{item.shopID}}" data-title="{{item.title}}"></text>
+
+
+      <block wx:if="{{collectList.length}}">
+        <view class="collect-item" wx:for="{{collectList}}" wx:key="shopID">
+
+          <!-- 2.1 图片右上角删除图标 -->
+          <view class="deleteIconWrapper">
+            <view class="deleteIconOut" wx:if="{{showDeleteIcon}}">
+              <text class=" iconfont icon-guanbi" bindtap="showDeleteOneDialog" data-shopid="{{item.shopID}}"
+                data-title="{{item.title}}"></text>
+            </view>
+          </view>
+          <!-- 2.2 图片 -->
+          <image src="{{item.picUrl}}" data-shopid="{{item.shopID}}" bindtap="goShowpic"></image>
+          <view class="bottom">
+            <text class="title">{{item.title}}</text>
+            <button open-type="share" class="share-button" data-url="{{item.picUrl}}" data-title="{{item.title}}"><text
+                class="iconfont icon-gengduo buttontext"></text></button>
           </view>
         </view>
-        <!-- 2.2 图片 -->
-        <image src="{{item.picUrl}}" data-shopid="{{item.shopID}}" bindtap="goShowpic"></image>
-        <view class="bottom">
-          <text class="title">{{item.title}}</text>
-          <button open-type="share" class="share-button" data-url="{{item.picUrl}}" data-title="{{item.title}}"><text
-              class="iconfont icon-gengduo buttontext"></text></button>
+      </block>
+      <!-- 2.2 没有收藏时显示提示图片 -->
+      <block wx:else>
+        <view class="nofund-wrapper">
+          <view class="tips">
+            <text class="bigsize">没有收藏~~</text>
+            <text class="smallsize">去主页添加吧</text>
+          </view>
+          <image class="nofound-img" src="/static/iconfont/nofound.png"></image>
         </view>
-      </view>
+      </block>
     </scroll-view>
     <!-- 2.3 删除的半屏弹窗 -->
     <mp-half-screen-dialog bindbuttontap="deleleCollect" show="{{show}}" title="删除收藏" subTitle="{{title}}"

@@ -59,6 +59,6 @@
   <view class="imgWrapper" bindtouchstart="touchstartCallback" bindtouchmove="touchmoveCallback"
     bindtouchend="touchendCallback" bindtap="switchHalfScreen">
     <image mode="aspectFit" src="{{currentPicUrl}}" bindload="imgLoaded"
-      style="transform:scale({{scale}}) translate({{transitionPos.x}}rpx,{{transitionPos.y}}rpx);"></image>
+      style="transform:scale({{scale}}) translate({{transitionPos.x}}px,{{transitionPos.y}}px);"></image>
   </view>
 </view>

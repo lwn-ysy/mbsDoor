@@ -39,7 +39,7 @@
     "showES6CompileOption": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.19.2",
+  "libVersion": "2.19.3",
   "appid": "wx68ebf119ae1b0e4f",
   "projectname": "mbs",
   "debugOptions": {
