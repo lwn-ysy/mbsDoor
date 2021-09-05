@@ -58,11 +58,11 @@
       <!-- 2.2 没有收藏时显示提示图片 -->
       <block wx:else>
         <view class="nofund-wrapper">
-          <view class="tips">
+          <view class="tips ">
             <text class="bigsize">没有收藏~~</text>
             <text class="smallsize">去主页添加吧</text>
           </view>
-          <image class="nofound-img" src="/static/iconfont/nofound.png"></image>
+          <image class="nofound-img wobble-hor-top" src="/static/iconfont/nofound.png"></image>
         </view>
       </block>
     </scroll-view>

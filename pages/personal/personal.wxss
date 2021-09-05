@@ -100,24 +100,61 @@ page {
   align-items: center;
 }
 
-.nofund-wrapper .tips{
+.nofund-wrapper .tips {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
-.nofund-wrapper .bigsize{
+
+.nofund-wrapper .bigsize {
   font-size: 28rpx;
   color: rgb(99, 97, 97);
 
 }
-.nofund-wrapper .smallsize{
+
+.nofund-wrapper .smallsize {
   font-size: 20rpx;
   color: rgb(99, 97, 97);
 
 }
+
 .nofund-wrapper .nofound-img {
   width: 250rpx;
   height: 250rpx;
+}
+
+/* 动画 */
+.wobble-hor-top {
+  animation: wobble-hor-top 0.8s 3 both ;
+}
+
+@keyframes wobble-hor-top {
+
+  0%,
+  100% {
+    transform: translateX(0%);
+    transform-origin: 50% 50%;
+  }
+
+  15% {
+    transform: translateX(-30px) rotate(6deg);
+  }
+
+  30% {
+    transform: translateX(15px) rotate(-6deg);
+  }
+
+  45% {
+    transform: translateX(-15px) rotate(3.6deg);
+  }
+
+  60% {
+    transform: translateX(9px) rotate(-2.4deg);
+  }
+
+  75% {
+    transform: translateX(-6px) rotate(1.2deg);
+  }
 }
 
 .collectWrapper .collect-item {
