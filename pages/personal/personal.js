@@ -120,7 +120,7 @@ Page({
       return;
     };
     let openID = appInstance.globalData.openID;
-    if (deleteAllCollect === true) {
+    if (deleteAllCollect === true) { 
       // 删除所有收藏
       await request('/personal/collect',{
         openID
@@ -162,7 +162,7 @@ Page({
   onShow: function () {
     let openID = appInstance.globalData.openID;
     this.getCollectList(openID, "collect");
-    this.getCollectList(openID, "history");
+    // this.getCollectList(openID, "history");
   },
 
   /**

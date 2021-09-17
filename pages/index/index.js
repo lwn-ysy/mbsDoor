@@ -11,7 +11,7 @@ Page({
     categoryList: [], //门类标签数据
     selectID: 10001, //当前选中的标签,number类型
     shopList: [], //图片区域数据
-    bottomShow: false, // 上拉，加载提示的显示
+    bottomShow: true, // 上拉，加载提示的显示
     showAuthor: false, //下拉，加载开发者信息
     exitAnimate: false, //退出动画
     entranceAnimate: false, //进入动画
@@ -53,11 +53,7 @@ Page({
       openID
     });
 
-    // TODO: 目前对mysql数据库不熟悉
-    // shop表格中，有一项tags列，值是字符串，例子："铜门,热销"
-    // 需要手动转为数组
     let newShopList = shopListData.data.map(item => {
-      item.tags = item.tags.split(',');
       item.dianzanGif = false;
       return item;
     })
@@ -96,7 +92,8 @@ Page({
     }
     this.setData({
       selectID: newSelectID,
-      shopList: []
+      shopList: [],
+      bottomShow: true
     })
     this.getShopList(newSelectID, openID);
   },

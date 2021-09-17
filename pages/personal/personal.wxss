@@ -125,7 +125,7 @@ page {
 
 /* 动画 */
 .wobble-hor-top {
-  animation: wobble-hor-top 0.8s 3 both ;
+  animation: wobble-hor-top 0.8s 2 both ;
 }
 
 @keyframes wobble-hor-top {

@@ -29,13 +29,11 @@
       <view class="btn">
         <button type="primary" size="mini" bindtap="showDeleteAllDialog">删除全部</button>
         <button type="primary" size="mini" wx:if="{{showDeleteButton}}" bindtap="showDeleteButton">删除</button>
-        <button type="primary" size="mini" wx:else bindtap="hideDeleteButton">取消</button>
+        <button type="default" size="mini" wx:else bindtap="hideDeleteButton">取消</button>
       </view>
     </view>
 
     <scroll-view class="collectWrapper" enable-flex scroll-x>
-
-
       <block wx:if="{{collectList.length}}">
         <view class="collect-item" wx:for="{{collectList}}" wx:key="shopID">
 
@@ -47,10 +45,10 @@
             </view>
           </view>
           <!-- 2.2 图片 -->
-          <image src="{{item.picUrl}}" data-shopid="{{item.shopID}}" bindtap="goShowpic"></image>
+          <image src="{{item.coverPicUrl}}" data-shopid="{{item.shopID}}" bindtap="goShowpic"></image>
           <view class="bottom">
             <text class="title">{{item.title}}</text>
-            <button open-type="share" class="share-button" data-url="{{item.picUrl}}" data-title="{{item.title}}"><text
+            <button open-type="share" class="share-button" data-url="{{item.covercoverPicUrl}}" data-title="{{item.title}}"><text
                 class="iconfont icon-gengduo buttontext"></text></button>
           </view>
         </view>
@@ -75,10 +73,10 @@
     <view class="header">历史</view>
     <scroll-view class="collectWrapper" enable-flex scroll-x>
       <view class="collect-item" wx:for="{{historyList}}" wx:key="shopID">
-        <image src="{{item.picUrl}}"></image>
+        <image src="{{item.covercoverPicUrl}}"></image>
         <view class="bottom">
           <text class="title">{{item.title}}</text>
-          <button open-type="share" class="share-button" data-url="{{item.picUrl}}" data-title="{{item.title}}"><text
+          <button open-type="share" class="share-button" data-url="{{item.covercoverPicUrl}}" data-title="{{item.title}}"><text
               class="iconfont icon-gengduo buttontext"></text></button>
         </view>
       </view>

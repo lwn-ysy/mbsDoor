@@ -18,17 +18,18 @@
     <scroll-view class="category" enable-flex scroll-x>
       <view class="categoryItem " wx:for="{{categoryList}}" wx:key='categoryID' data-categoryid='{{item.categoryID}}'
         bindtap="switchCategory">
-        <text class="{{item.categoryID ===  selectID ? 'selected' : ''}}">{{item.name}}</text>
+        <text class="{{item.categoryID ===  selectID ? 'selected' : ''}}">{{item.categoryname}}</text>
       </view>
     </scroll-view>
   </view>
   <!-- 3. 图片展示区域 -->
   <view class="shopContainer">
+    <mp-loading show="{{shopLoading}}"></mp-loading>
     <scroll-view class="shop" enable-flex scroll-y>
       <view class="shopItem {{item.isFull === 1 ? 'fullShop' : 'halfShop'}} " wx:for="{{shopList}}" wx:key="shopID">
         <!-- 3.1 图片 -->
         <image data-shopid="{{item.shopID}}" bindtap="goShowPic" class="{{item.isFull === 1 ? 'full' : 'half'}}"
-          src="{{item.picUrl}}"></image>
+          src="{{item.coverPicUrl}}"></image>
         <!-- 3.2 文字说明  -->
         <text class="des">{{item.des}}</text>
         <!-- 3.3 底部图标 -->
@@ -57,9 +58,9 @@
     </scroll-view>
   </view>
   <!-- 4. 下拉显示区域  -->
-  <view class="bottom" wx:if="{{bottomShow}}">
-    <mp-loading type="circle"></mp-loading>
-  </view>
+  
+    <mp-loading type="circle" show="{{bottomShow}}"></mp-loading>
+
 
 
 

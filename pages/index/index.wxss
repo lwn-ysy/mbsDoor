@@ -159,6 +159,7 @@
 
 .shop .shopItem .des {
   font-size: 22rpx;
+  height: 68rpx;
   margin: 0 20rpx;
   /* 多行文本溢出隐藏 省略号代替*/
   overflow: hidden;
