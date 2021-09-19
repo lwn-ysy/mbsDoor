@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/show/show",
+    "pages/blog/blog",
     "pages/showpic/showpic",
     "pages/personal/personal",
     "pages/branddes/branddes"
@@ -30,8 +30,8 @@
         "selectedIconPath": "/static/image/tabs/homepage-selected.png"
       },
       {
-        "pagePath": "pages/show/show",
-        "text": "实地实拍",
+        "pagePath": "pages/blog/blog",
+        "text": "blog",
         "iconPath": "/static/image/tabs/show.png",
         "selectedIconPath": "/static/image/tabs/show-selected.png"
       },

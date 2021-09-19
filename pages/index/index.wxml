@@ -58,10 +58,5 @@
     </scroll-view>
   </view>
   <!-- 4. 下拉显示区域  -->
-  
     <mp-loading type="circle" show="{{bottomShow}}"></mp-loading>
-
-
-
-
 </view>

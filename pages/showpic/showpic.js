@@ -174,7 +174,6 @@ Page({
     if (newTimeStamp - timeStamp > 200) {
       return;
     }
-    // TODO: 这里的点击有时touches.length是0，还存在疑问;正常永远都是1
 
     let goZoom = this.data.goZoom;
     goZoom.inAnimate = false;
@@ -294,7 +293,7 @@ Page({
     let openID = appInstance.globalData.openID;
     let {
       data: shopData
-    } = await request('/showpic/shop', {
+    } = await request('/show/shop', {
       shopID,
       openID
     })

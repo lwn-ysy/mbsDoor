@@ -244,7 +244,6 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    console.log('用户触发下拉');
     this.setData({
       exitAnimate: false,
       entranceAnimate: true

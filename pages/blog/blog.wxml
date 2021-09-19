@@ -16,21 +16,22 @@
   <view class="contentWapper">
     <view class="item" wx:for="{{lists}}" wx:key="id">
       <view class="avater" bindtap="test">
-        <image src="{{item.avater}}"></image>
+        <image src="{{item.avatar}}"></image>
       </view>
       <view class="rt">
         <view class="nickname">{{item.nickname}}</view>
         <view class="content">{{item.content}}</view>
         <!-- 3.1 图片 -->
         <view class="pic-wrapper">
-          <view class="image-wrapper" bindtap="goPreviewImage" data-imgurls="{{item.imgUrls}}">
-            <image wx:for="{{item.imgUrls}}" wx:key="index" src="{{item}}" id="{{index}}" mode="aspectFill">
+          <view class="image-wrapper" bindtap="goPreviewImage" data-imgurls="{{item.imageurls}}">
+            <image wx:for="{{item.imageurls}}" wx:key="index" src="{{item}}" id="{{index}}" mode="aspectFill">
             </image>
           </view>
         </view>
         <view class="address">{{item.address}}</view>
-        <view class="time">{{item.time}}</view>
+        <view class="time">{{item.date}}</view>
       </view>
     </view>
   </view>
+  <mp-loading type="circle" show="{{bottomShow}}"></mp-loading>
 </view>

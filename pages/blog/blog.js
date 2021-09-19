@@ -1,4 +1,6 @@
 // pages/show/show.js
+import request from '../../utils/request';
+
 Page({
 
   /**
@@ -14,42 +16,8 @@ Page({
       ['河源', '惠州仲恺'],
       ['河源', '惠州仲恺']
     ],
-    lists: [{
-      id: "001",
-      avater: "https://mbsdoor.com:5000/static/image/showpic/avater.jpg",
-      nickname: "门博士",
-      content: "文字描述",
-      address: "深圳市龙岗区锦城新苑",
-      time: "2021-08-29",
-      imgUrls: [
-        "https://mbsdoor.com:5000/static/image/showpic/1.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/2.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/3.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/4.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/5.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/6.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/7.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/8.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/9.jpg",
-      ]
-    }, {
-      avater: "https://mbsdoor.com:5000/static/image/showpic/avater.jpg",
-      nickname: "门博士",
-      content: "文字描述",
-      address: "深圳市龙岗区锦城新苑",
-      time: "2021-08-29",
-      imgUrls: [
-        "https://mbsdoor.com:5000/static/image/showpic/1.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/2.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/3.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/4.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/5.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/6.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/7.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/8.jpg",
-        "https://mbsdoor.com:5000/static/image/showpic/9.jpg",
-      ]
-    }]
+    lists: [], // blog数据
+    bottomShow:true,//loading组件
 
   },
   search: function (value) {
@@ -63,6 +31,19 @@ Page({
           value: 2
         }])
       }, 200)
+    })
+  },
+  async getData() {
+    let offset = this.data.lists.length || 0;
+    let {
+      data: lists
+    } = await request('/blog', {
+      offset
+    });
+    lists = this.data.lists.concat(lists)
+    this.setData({
+      lists,
+      bottomShow: false
     })
   },
   // 点击搜索内的值
@@ -89,7 +70,8 @@ Page({
     //搜索框的值
     this.setData({
       search: this.search.bind(this)
-    })
+    });
+    this.getData()
   },
   onPageScroll() {},
   /**
@@ -131,7 +113,10 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.setData({
+      bottomShow: true
+    });
+    this.getData();
   },
 
   /**

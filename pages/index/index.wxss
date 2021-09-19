@@ -13,6 +13,7 @@
   height: 0;
   color: #706f6f;
 }
+
 /* 进入动画 */
 .scale-in-top {
   animation: scale-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -101,11 +102,6 @@
   background-color: #f7f7f7;
 }
 
-/* .category .categoryItem text {
-  display: inline-block;
-  width: 120rpx;
-} */
-
 .category .selected {
   color: #d43d33;
   border-bottom: 2rpx solid #d43d33;
@@ -136,6 +132,8 @@
   overflow: hidden;
 }
 
+/* .shopItem:active{
+} */
 /* 一行一个图片的类 */
 .shop .fullShop {
   width: 710rpx;
@@ -150,6 +148,15 @@
   width: 345rpx;
   /* 高度可以计算 */
   height: 245.24rpx;
+}
+
+.shopItem {
+  transition: all 0.1s linear;
+}
+
+.shopItem:active {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .shop .shopItem .full {
