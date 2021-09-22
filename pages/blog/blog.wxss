@@ -50,7 +50,7 @@ page {
   color: #fff;
 }
 
-.tab .tab-item text:hover {
+.tab .tab-item text:active {
   background-color: #8cc5ff;
 }
 

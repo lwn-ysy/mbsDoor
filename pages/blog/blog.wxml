@@ -14,7 +14,7 @@
   </view>
   <!-- 3 内容 -->
   <view class="contentWapper">
-    <view class="item" wx:for="{{lists}}" wx:key="id">
+    <view class="item" wx:for="{{lists}}" wx:key="blogID">
       <view class="avater" bindtap="test">
         <image src="{{item.avatar}}"></image>
       </view>

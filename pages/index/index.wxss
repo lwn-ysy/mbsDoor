@@ -154,10 +154,10 @@
   transition: all 0.1s linear;
 }
 
-.shopItem:active {
+/* .shopItem:active {
   transform: scale(1.05);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
+} */
 
 .shop .shopItem .full {
   width: 710rpx;
